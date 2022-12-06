@@ -7,7 +7,7 @@ class Bullet {
         this.cannonRotation = cannonRotation;
         this.angle = angle;
         this.moveAngle = moveAngle;
-        this.rotation = this.rotation % 90 === 0 ? 150 - rotation : 180 - rotation;
+        this.rotation = rotation
 
 
         this.domElement = null;
@@ -27,10 +27,20 @@ class Bullet {
 
     }
     move() {
-        const angle = (this.rotation * Math.PI) / 180;
+
+        const bothRotations = (this.rotation + this.cannonRotation) % 360
+        const angle = (bothRotations * Math.PI) / 180;
+        // const angle = (this.cannonRotation * Math.PI) / 180;
+
+        console.log("angle: " + angle);
+        console.log("moveAngle: " + this.moveAngle);
+        console.log("rotation: " + this.rotation)
+        console.log("cannonRotation: " + this.cannonRotation)
+        console.log("bothRotations: " + bothRotations)
+
         const move = () => {
-            this.x += (this.speed) * Math.sin(angle);
-            this.y -= (this.speed) * Math.cos(angle);
+            this.x += Math.sin(angle);
+            this.y += Math.cos(angle);
             this.domElement.style.left = this.x + "vw";
             this.domElement.style.bottom = this.y + "vh";
 
