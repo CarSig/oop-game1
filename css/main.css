@@ -20,7 +20,7 @@ body {
 
 .obstacle {
   position: absolute;
-  background-color: rgb(90, 19, 156);
+  /* background-color: rgb(90, 19, 156); */
 }
 
 img {
