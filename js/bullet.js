@@ -39,8 +39,8 @@ class Bullet {
         console.log("bothRotations: " + bothRotations)
 
         const move = () => {
-            this.x += Math.sin(angle);
-            this.y += Math.cos(angle);
+            this.x += Math.sin(angle) * this.speed;
+            this.y += Math.cos(angle) * this.speed;
             this.domElement.style.left = this.x + "vw";
             this.domElement.style.bottom = this.y + "vh";
 
@@ -49,7 +49,7 @@ class Bullet {
 
                 clearInterval(bulletInterval)
                 this.domElement.remove()
-            }, 1000)
+            }, 2000)
         }
 
         const bulletInterval = setInterval(() => { move() }, 100)
