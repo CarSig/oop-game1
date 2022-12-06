@@ -19,13 +19,8 @@ class Bullet {
         // create bullet
         this.domElement = document.createElement('div');
         this.domElement.className = "bullet";
-
-        // move bullet 200 px from the tank in the direction of the cannon x axisđ
         this.domElement.style.left = this.x + "vw";
         this.domElement.style.bottom = this.y + "vh";
-        // this.domElement.style.transform = "rotate(" + this.rotation + "deg)";
-
-        //step3: append to the dom: `parentElm.appendChild()`
         const boardElm = document.getElementById("board");
         boardElm.appendChild(this.domElement);
         this.move()
@@ -33,29 +28,26 @@ class Bullet {
     }
     move() {
         const angle = (this.rotation * Math.PI) / 180;
-        bulletInterval = setInterval(() => {
-
+        const move = () => {
             this.x += (this.speed) * Math.sin(angle);
             this.y -= (this.speed) * Math.cos(angle);
             this.domElement.style.left = this.x + "vw";
             this.domElement.style.bottom = this.y + "vh";
 
+            console.log(this.rotation)
+            setTimeout(() => {
+                console.log("clear")
+                clearInterval(bulletInterval)
+                this.domElement.remove()
+            }, 1000)
+
+
+        }
+
+        const bulletInterval = setInterval(() => { move() }, 100)
 
 
 
-
-
-
-            // this.y = this.y + this.speed;
-
-            // this.domElement.style.bottom = this.y + "vh";
-        }, this.range / this.speed)
-
-
-
-        setTimeout(() => {
-            this.domElement.remove()
-        }, 1000)
 
     }
 
