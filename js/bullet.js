@@ -1,13 +1,13 @@
 class Bullet {
     constructor(x, y, speed, range, cannonRotation, angle, moveAngle, rotation) {
-        this.x = x;
+        this.x = x + 2;
         this.y = y;
         this.speed = speed;
         this.range = range;
         this.cannonRotation = cannonRotation;
         this.angle = angle;
         this.moveAngle = moveAngle;
-        this.rotation = rotation;
+        this.rotation = this.rotation % 90 === 0 ? 150 - rotation : 180 - rotation;
 
 
         this.domElement = null;
@@ -36,7 +36,7 @@ class Bullet {
 
             console.log(this.rotation)
             setTimeout(() => {
-                console.log("clear")
+
                 clearInterval(bulletInterval)
                 this.domElement.remove()
             }, 1000)
