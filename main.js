@@ -2,8 +2,8 @@ class Player {
     constructor() {
         this.width = 10;
         this.height = 10;
-        this.positionX = 50 - (this.width / 2);
-        this.positionY = 0;
+        this.x = 50 - (this.width / 2);
+        this.y = 0;
 
         this.domElement = null;
         this.createDomElement();
@@ -17,8 +17,8 @@ class Player {
         this.domElement.id = "player";
         this.domElement.style.width = this.width + "vw";
         this.domElement.style.height = this.height + "vh";
-        this.domElement.style.bottom = this.positionY + "vh";
-        this.domElement.style.left = this.positionX + "vw";
+        this.domElement.style.bottom = this.y + "vh";
+        this.domElement.style.left = this.x + "vw";
 
         //step3: append to the dom: `parentElm.appendChild()`
         const boardElm = document.getElementById("board");
@@ -26,13 +26,13 @@ class Player {
     }
 
     moveLeft() {
-        this.positionX--;
-        this.domElement.style.left = this.positionX + "vw";
+        this.x--;
+        this.domElement.style.left = this.x + "vw";
     }
 
     moveRight() {
-        this.positionX++;
-        this.domElement.style.left = this.positionX + "vw";
+        this.x++;
+        this.domElement.style.left = this.x + "vw";
     }
 }
 
@@ -40,8 +40,8 @@ class Obstacle {
     constructor() {
         this.width = 20;
         this.height = 10;
-        this.positionX = 50 - (this.width / 2);
-        this.positionY = 80;
+        this.x = 50 - (this.width / 2);
+        this.y = 80;
 
         this.domElement = null;
         this.createDomElement();
@@ -54,8 +54,8 @@ class Obstacle {
         this.domElement.className = "obstacle";
         this.domElement.style.width = this.width + "vw";
         this.domElement.style.height = this.height + "vh";
-        this.domElement.style.bottom = this.positionY + "vh";
-        this.domElement.style.left = this.positionX + "vw";
+        this.domElement.style.bottom = this.y + "vh";
+        this.domElement.style.left = this.x + "vw";
         this.domElement.style.transformOrigin = "bottom";
 
         //step3: append to the dom: `parentElm.appendChild()`
@@ -63,8 +63,11 @@ class Obstacle {
         boardElm.appendChild(this.domElement);
     }
     moveDown() {
-        this.positionY--;
-        this.domElement.style.bottom = this.positionY + "vh";
+        this.y--;
+        this.domElement.style.bottom = this.y + "vh";
+    }
+    sound() {
+        console.log("Tank sound")
     }
 
 }
@@ -73,7 +76,7 @@ class Obstacle {
 
 
 const player = new Player();
-const cannon = new Cannon();
+const turret = new Turret();
 const obstacles = []; //will hold instances of the class Obstacle
 
 
@@ -105,7 +108,7 @@ setInterval(() => {
 
         //move current obstacle
         obstacleInstance.moveDown();
-        if (obstacleInstance.positionY <= -obstacleInstance.height) {
+        if (obstacleInstance.y <= -obstacleInstance.height) {
             // destroy the obstacle
             console.log("destroy the obstacle");
             obstacleInstance.domElement.remove();
@@ -114,10 +117,10 @@ setInterval(() => {
         }
         //detect if there's a collision between player and current obstacle
         if (
-            player.positionX < obstacleInstance.positionX + obstacleInstance.width &&
-            player.positionX + player.width > obstacleInstance.positionX &&
-            player.positionY < obstacleInstance.positionY + obstacleInstance.height &&
-            player.height + player.positionY > obstacleInstance.positionY
+            player.x < obstacleInstance.x + obstacleInstance.width &&
+            player.x + player.width > obstacleInstance.x &&
+            player.y < obstacleInstance.y + obstacleInstance.height &&
+            player.height + player.y > obstacleInstance.y
         ) {
             console.log("collision detected!!");
         }

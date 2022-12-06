@@ -4,9 +4,9 @@ class Player {
         this.width = 5;
         this.height = 8;
         this.x = 50 - (this.width / 2);
-        this.y = 0;
+        this.y = 50;
         this.domElement = null;
-        this.cannon = null;
+        this.turret = null;
         this.speed = 0;
         this.angle = 0;
         this.moveAngle = 0;
@@ -30,9 +30,22 @@ class Player {
 
         this.domElement = document.createElement('div');
         this.domElement.id = "player";
+
+        this.parentTank = document.createElement('div');
+
         this.img = document.createElement('img');
         this.img.src = "./css/tank_body.png";
-        this.domElement.appendChild(this.img);
+        this.img.id = "imgTank"
+
+
+        this.parent = document.createElement('div');
+        this.parent.id = "parentTank";
+        this.parent.style.width = this.width + "vw";
+        this.parent.style.height = this.height + "vh";
+        this.domElement.appendChild(this.parent);
+        this.parent.appendChild(this.img);
+
+
 
         this.domElement.style.width = this.width + "vw";
         this.domElement.style.height = this.height + "vh";
@@ -40,12 +53,19 @@ class Player {
         this.domElement.style.left = this.x + "vw";
         this.domElement.style.bottom = this.y + "vh";
 
-        this.cannon = document.createElement('img');
-        this.cannon.id = "cannon";
-        this.cannon.src = "./css/tank_cannon.png";
-        this.domElement.appendChild(this.cannon);
+        this.turret = document.createElement('img');
+        this.turret.id = "imgTurret";
 
+        this.turret.src = "./css/tank_cannon.png";
+        this.parent.appendChild(this.turret);
+        // this.turret.style.bottom = "-1vh";
+        // this.turret.style.left = "0.2vw";
+        // this.turret.style.width = "70%";
+        this.domElement.appendChild(this.turret);
 
+        /* left: 0.1rem;
+          top: -4rem;
+          width: 70%;*/
 
         //step3: append to the dom: `parentElm.appendChild()`
         const boardElm = document.getElementById("board");
@@ -92,7 +112,7 @@ class Player {
     };
 
     rotateCannon() {
-        this.cannon.style.transform = "rotate(" + this.cannonRotation + "deg)"
+        this.turret.style.transform = "rotate(" + this.cannonRotation + "deg)"
 
 
     }
@@ -105,28 +125,47 @@ class Player {
 }
 
 
-class Cannon extends Player {
+const player = new Player();
+
+
+class Turret extends Player {
+
     constructor(x, y) {
         super(x, y)
+        // this.x = x.bind(player)
+        // this.y = y.bind(player)
+        this.x = x
+        this.y = y
+        this.width = 5;
+        this.height = 8;
         this.cannonRotation = 0;
         this.rotation = 0;
-        this.cannon = null;
+        this.turret = null;
         this.createDomElement();
-        console.log("cannon created")
+        console.log("turret created")
+
     }
     createDomElement() {
-        this.cannon = document.createElement('img');
-        this.cannon.id = "cannon";
-        this.cannon.src = "./css/tank_cannon.png";
-        this.domElement.appendChild(this.cannon);
-        this.cannon.style.left = this.x + "vw";
-        this.cannon.style.bottom = this.y + "vh";
+        this.turret = document.createElement('img');
+        this.turret.id = "turret1";
+        this.turret.src = "./css/tank_cannon.png";
+        this.turret.width = this.width;
+        this.turret.height = this.height;
+        console.log(this.x, this.y, this.turret.id)
+        // this.domElement.appendChild(this.turret);
+        this.turret.style.left = this.x + "vw";
+        this.turret.style.bottom = this.y + 2 + "vh";
         const boardElm = document.getElementById("board");
-        boardElm.appendChild(this.domElement);
+        boardElm.appendChild(this.turret);
     }
+
+
+
 }
 
 
 
+// const a = new Turret()
 
+// console.log(a.width)
 

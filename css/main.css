@@ -26,7 +26,8 @@ body {
 img {
   width: 80%;
   height: auto;
-  transform-origin: 50% 1270%;
+
+  /* transform-origin: 50% 1270%; */
 }
 
 /* #cannon {
@@ -54,4 +55,27 @@ img {
   height: 5px;
   border-radius: 50%;
   transform-origin: 50% 50%;
+}
+
+#parentTank {
+  position: relative;
+}
+
+#imgTank {
+  position: absolute;
+  /* width: 100%; */
+  height: auto;
+
+  /* transform-origin: 50% 1270%; */
+}
+
+#imgTurret {
+  position: relative;
+  width: 68%;
+  height: auto;
+
+  transform-origin: 50% 80%;
+  z-index: 1;
+  bottom: 200%;
+  left: 5%;
 }
