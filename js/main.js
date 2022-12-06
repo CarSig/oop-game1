@@ -88,5 +88,4 @@ document.addEventListener('keydown', function (event) {
 
 
 const player = new Player();
-const obstacle1 = new Obstacle(10, 10, 10, 10, "#8f8");
-const obstacle2 = new Obstacle(5, 8, 80, 10, "#88f");
+const obstacles = [new Obstacle(10, 10, 55, 55, "#8f8"), new Obstacle(5, 8, 80, 10, "#88f")]

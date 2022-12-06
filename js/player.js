@@ -100,4 +100,33 @@ class Player {
         const bullet = new Bullet(this.x, this.y, 2, 100, this.cannonRotation, this.angle, this.moveAngle, this.rotation)
     }
 
+
+
 }
+
+
+class Cannon extends Player {
+    constructor(x, y) {
+        super(x, y)
+        this.cannonRotation = 0;
+        this.rotation = 0;
+        this.cannon = null;
+        this.createDomElement();
+        console.log("cannon created")
+    }
+    createDomElement() {
+        this.cannon = document.createElement('img');
+        this.cannon.id = "cannon";
+        this.cannon.src = "./css/tank_cannon.png";
+        this.domElement.appendChild(this.cannon);
+        this.cannon.style.left = this.x + "vw";
+        this.cannon.style.bottom = this.y + "vh";
+        const boardElm = document.getElementById("board");
+        boardElm.appendChild(this.domElement);
+    }
+}
+
+
+
+
+

@@ -40,15 +40,9 @@ class Bullet {
                 clearInterval(bulletInterval)
                 this.domElement.remove()
             }, 1000)
-
-
         }
 
         const bulletInterval = setInterval(() => { move() }, 100)
-
-
-
-
     }
 
 

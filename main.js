@@ -73,6 +73,7 @@ class Obstacle {
 
 
 const player = new Player();
+const cannon = new Cannon();
 const obstacles = []; //will hold instances of the class Obstacle
 
 
