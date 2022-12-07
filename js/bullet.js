@@ -1,31 +1,5 @@
 
 
-const detectCollision = (actor, target) => {
-    const collision = actor.x < target.x + target.width &&
-        actor.x + actor.width > target.x &&
-        actor.y < target.y + target.height &&
-        actor.height + actor.y > target.y
-
-
-    if (
-        collision
-    ) {
-        switch (actor.constructor) {
-            case Bullet:
-                console.log("bullet collision detected!!")
-                actor.domElement.remove();
-                return true;
-                break;
-            case Player:
-                console.log("player collision detected!!")
-                actor.speedLimit = 0
-                console.log(actor.speedLimit)
-                break;
-            default: console.log("collision detected!!");
-        }
-    }
-}
-
 class Bullet {
     constructor(x, y, speed, range, cannonRotation, angle, moveAngle, rotation) {
         this.x = x + 2;

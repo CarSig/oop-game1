@@ -124,6 +124,21 @@ class Player {
         this.handleRotation();
         this.domElement.style.left = this.x + "vw";
         this.domElement.style.bottom = this.y + "vh";
+        const collidedObs = obstacles.filter(obstacle => detectCollision(this, obstacle))
+        if (!this.hasCollided) {
+            this.speedLimit = -2
+        }
+
+        if (collidedObs.length > 0) {
+            this.speedLimit = 0
+            this.hasCollided = true
+
+        }
+        else {
+            this.speedLimit = -2
+            this.hasCollided = false
+        }
+
 
 
     };

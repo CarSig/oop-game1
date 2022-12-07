@@ -1,3 +1,34 @@
+
+
+const detectCollision = (actor, target) => {
+    const collision = actor.x < target.x + target.width &&
+        actor.x + actor.width > target.x &&
+        actor.y < target.y + target.height &&
+        actor.height + actor.y > target.y
+
+
+    if (
+        collision
+    ) {
+        switch (actor.constructor) {
+            case Bullet:
+                console.log("bullet collision detected!!")
+                actor.domElement.remove();
+                return true;
+                break;
+            case Player:
+                console.log("player collision detected!!")
+                actor.speedLimit = 0
+                console.log(actor.speedLimit)
+                return true
+                break;
+            default: console.log("collision detected!!");
+        }
+    }
+    return false
+}
+
+
 class Obstacle {
     constructor(width, height, x, y, color) {
         this.width = width;
