@@ -69,6 +69,7 @@ class UFO extends Item {
     constructor(width, height, x, y, type, health) {
         super(width, height, x, y, type)
         this.health = health;
+        console.log("UFO created")
     }
 }
 
@@ -76,11 +77,12 @@ const UFOarr = []
 
 //create UFO
 setInterval(() => {
-    //get x position on random side of the board
+
     const x = Math.random() > 0.5 ? 0 : 1000;
-    const y = Math.random() * 600;
-    const newUFO = new UFO(50, 50, x, y, "ufo", 10);
+    const y = Math.ceil(Math.random() * 600);
+    const newUFO = new UFO(50, 50, x, y, "red", "ufo", 10);
     UFOarr.push(newUFO);
+    console.log(UFOarr);
 }, 3000);
 
 
@@ -88,11 +90,11 @@ setInterval(() => {
 
 
 
-// Create obstacles
-setInterval(() => {
-    const newObstacle = new Obstacle();
-    obstacles.push(newObstacle);
-}, 3000);
+// // Create obstacles
+// setInterval(() => {
+//     const newObstacle = new Obstacle();
+//     obstacles.push(newObstacle);
+// }, 3000);
 
 
 
@@ -100,27 +102,27 @@ setInterval(() => {
 
 
 
-//Move obstacles & detect collision
-setInterval(() => {
-    obstacles.forEach((obstacleInstance) => {
+// //Move obstacles & detect collision
+// setInterval(() => {
+//     obstacles.forEach((obstacleInstance) => {
 
-        //move current obstacle
-        obstacleInstance.moveDown();
-        if (obstacleInstance.y <= -obstacleInstance.height) {
-            // destroy the obstacle
-            console.log("destroy the obstacle");
-            obstacleInstance.domElement.remove();
-            obstacles.shift();
+//         //move current obstacle
+//         obstacleInstance.moveDown();
+//         if (obstacleInstance.y <= -obstacleInstance.height) {
+//             // destroy the obstacle
+//             console.log("destroy the obstacle");
+//             obstacleInstance.domElement.remove();
+//             obstacles.shift();
 
-        }
-        //detect if there's a collision between player and current obstacle
-        if (
-            player.x < obstacleInstance.x + obstacleInstance.width &&
-            player.x + player.width > obstacleInstance.x &&
-            player.y < obstacleInstance.y + obstacleInstance.height &&
-            player.height + player.y > obstacleInstance.y
-        ) {
-            console.log("collision detected!!");
-        }
-    });
-}, 50)
+//         }
+//         //detect if there's a collision between player and current obstacle
+//         if (
+//             player.x < obstacleInstance.x + obstacleInstance.width &&
+//             player.x + player.width > obstacleInstance.x &&
+//             player.y < obstacleInstance.y + obstacleInstance.height &&
+//             player.height + player.y > obstacleInstance.y
+//         ) {
+//             console.log("collision detected!!");
+//         }
+//     });
+// }, 50)
