@@ -1,4 +1,4 @@
-
+const bulletsArr = [];
 class Player {
     constructor() {
         this.width = 5;
@@ -22,7 +22,7 @@ class Player {
             canonRight: false
         };
         this.cannonRotation = 0;
-
+        this.hasCollided = false;
 
     }
 
@@ -31,13 +31,13 @@ class Player {
         this.domElement = document.createElement('div');
         this.domElement.id = "player";
 
-        this.parentTank = document.createElement('div');
+        // this.parentTank = document.createElement('div');
 
         this.img = document.createElement('img');
         this.img.src = "./css/tank_body.png";
         this.img.id = "imgTank"
 
-
+        // it is necessary to create a parent div to make sure the turret is always at the right place regardless of screen size
         this.parent = document.createElement('div');
         this.parent.id = "parentTank";
         this.parent.style.width = this.width + "vw";
@@ -86,7 +86,24 @@ class Player {
     }
 
     handleSpeed() {
-        this.speed = this.arrow.up ? (-0.25 - this.acceleration) : this.arrow.down ? 0.3 : 0
+        if (this.arrow.up) {
+            const speed = -0.25 - this.acceleration
+
+            if (speed < this.speedLimit) {
+                this.speed = this.speedLimit
+            } else {
+                this.speed = speed
+            }
+        }
+
+        if (this.arrow.down) {
+
+            this.speed = 0.3
+        }
+
+        console.log(this.speed)
+
+        // this.speed = this.arrow.up ? (-0.25 - this.acceleration) : this.arrow.down ? 0.3 : 0
         this.moveAngle = this.arrow.left ? 1 : this.arrow.right ? -1 : 0;
 
 
@@ -108,7 +125,7 @@ class Player {
         this.domElement.style.left = this.x + "vw";
         this.domElement.style.bottom = this.y + "vh";
 
-        console.log("speed: " + this.speed, "rotation: " + this.rotation)
+
     };
 
     rotateCannon() {
@@ -118,6 +135,7 @@ class Player {
     }
     shot() {
         const bullet = new Bullet(this.x, this.y, 2, 100, this.cannonRotation, this.angle, this.moveAngle, this.rotation)
+        bulletsArr.push(bullet)
     }
 
 
@@ -125,7 +143,6 @@ class Player {
 }
 
 
-const player = new Player();
 
 
 class Turret extends Player {
@@ -146,12 +163,12 @@ class Turret extends Player {
 
     }
     createDomElement() {
-        this.turret = document.createElement('img');
-        this.turret.id = "turret1";
-        this.turret.src = "./css/tank_cannon.png";
-        this.turret.width = this.width;
-        this.turret.height = this.height;
-        console.log(this.x, this.y, this.turret.id)
+        // this.turret = document.createElement('img');
+        // this.turret.id = "turret1";
+        // this.turret.src = "./css/tank_cannon.png";
+        // this.turret.width = this.width;
+        // this.turret.height = this.height;
+        // console.log(this.x, this.y, this.turret.id)
         // this.domElement.appendChild(this.turret);
         this.turret.style.left = this.x + "vw";
         this.turret.style.bottom = this.y + 2 + "vh";

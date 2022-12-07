@@ -1,16 +1,44 @@
 
+const obstacles = [new Obstacle(10, 10, 55, 55, "#8f8"), new Obstacle(5, 8, 80, 10, "#88f")]
+
+const player = new Player();
+
+
 // const detectCollision = (first, second) => {
-//     if (
-//         first.x < second.x + second.width &&
+//     const collision = first.x < second.x + second.width &&
 //         first.x + first.width > second.x &&
 //         first.y < second.y + second.height &&
 //         first.height + first.y > second.y
+
+//     if (
+//         collision
 //     ) {
-//         console.log("collision detected!!");
+//         switch (first.constructor) {
+//             case Bullet:
+//                 console.log("bullet collision detected!!")
+//                 break;
+//             case Player:
+//                 console.log("player collision detected!!")
+//                 first.speedLimit = 0.001
+//                 console.log(first.speedLimit)
+//                 break;
+//             default: console.log("collision detected!!");
+//         }
 //     }
 // }
 
 
+
+// setInterval(() => {
+//     obstacles.forEach((obstacleInstance) => {
+//         detectCollision(player, obstacleInstance)
+//         bulletsArr.forEach((bullet) => {
+//             detectCollision(bullet, obstacleInstance)
+
+//         });
+
+//     }, 100)
+// })
 
 
 
@@ -87,4 +115,3 @@ document.addEventListener('keydown', function (event) {
 
 
 
-const obstacles = [new Obstacle(10, 10, 55, 55, "#8f8"), new Obstacle(5, 8, 80, 10, "#88f")]

@@ -1,3 +1,31 @@
+
+
+const detectCollision = (actor, target) => {
+    const collision = actor.x < target.x + target.width &&
+        actor.x + actor.width > target.x &&
+        actor.y < target.y + target.height &&
+        actor.height + actor.y > target.y
+
+
+    if (
+        collision
+    ) {
+        switch (actor.constructor) {
+            case Bullet:
+                console.log("bullet collision detected!!")
+                actor.domElement.remove();
+                return true;
+                break;
+            case Player:
+                console.log("player collision detected!!")
+                actor.speedLimit = 0
+                console.log(actor.speedLimit)
+                break;
+            default: console.log("collision detected!!");
+        }
+    }
+}
+
 class Bullet {
     constructor(x, y, speed, range, cannonRotation, angle, moveAngle, rotation) {
         this.x = x + 2;
@@ -8,7 +36,8 @@ class Bullet {
         this.angle = angle;
         this.moveAngle = moveAngle;
         this.rotation = rotation
-
+        this.height = 0.1;
+        this.width = 0.1;
 
         this.domElement = null;
         this.createDomElement();
@@ -39,12 +68,13 @@ class Bullet {
         console.log("bothRotations: " + bothRotations)
 
         const move = () => {
-            this.x += Math.sin(angle) * this.speed;
-            this.y += Math.cos(angle) * this.speed;
+
+            this.x += Math.sin(angle) //* this.speed;
+            this.y += Math.cos(angle) ///* this.speed;
             this.domElement.style.left = this.x + "vw";
             this.domElement.style.bottom = this.y + "vh";
 
-            console.log(this.rotation)
+
             setTimeout(() => {
 
                 clearInterval(bulletInterval)
@@ -52,8 +82,20 @@ class Bullet {
             }, 2000)
         }
 
-        const bulletInterval = setInterval(() => { move() }, 100)
+        const bulletInterval = setInterval(() => {
+            move()
+            obstacles.forEach((obstacleInstance) => {
+                detectCollision(this, obstacleInstance)
+                if (detectCollision(this, obstacleInstance)) {
+                    clearInterval(bulletInterval)
+                    this.domElement.remove()
+                    console.log("bullet removed")
+                }
+            }, 150)
+        })
+
+
+
+
     }
-
-
 }
