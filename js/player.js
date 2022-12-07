@@ -1,8 +1,8 @@
 const bulletsArr = [];
 class Player {
     constructor() {
-        this.width = 5;
-        this.height = 8;
+        this.width = 75;
+        this.height = 100;
         this.x = 50 - (this.width / 2);
         this.y = 50;
         this.domElement = null;
@@ -11,7 +11,7 @@ class Player {
         this.angle = 0;
         this.moveAngle = 0;
         this.acceleration = 0
-        this.speedLimit = -2;
+        this.speedLimit = -10;
         this.createDomElement();
         this.arrow = {
             up: false,
@@ -40,18 +40,18 @@ class Player {
         // it is necessary to create a parent div to make sure the turret is always at the right place regardless of screen size
         this.parent = document.createElement('div');
         this.parent.id = "parentTank";
-        this.parent.style.width = this.width + "vw";
-        this.parent.style.height = this.height + "vh";
+        this.parent.style.width = this.width + "px";
+        this.parent.style.height = this.height + "px";
         this.domElement.appendChild(this.parent);
         this.parent.appendChild(this.img);
 
 
 
-        this.domElement.style.width = this.width + "vw";
-        this.domElement.style.height = this.height + "vh";
+        this.domElement.style.width = this.width + "px";
+        this.domElement.style.height = this.height + "px";
         this.domElement.style.transformOrigin = "50% 80%";
-        this.domElement.style.left = this.x + "vw";
-        this.domElement.style.bottom = this.y + "vh";
+        this.domElement.style.left = this.x + "px";
+        this.domElement.style.bottom = this.y + "px";
 
         this.turret = document.createElement('img');
         this.turret.id = "imgTurret";
@@ -61,7 +61,7 @@ class Player {
         // this.turret.style.bottom = "-1vh";
         // this.turret.style.left = "0.2vw";
         // this.turret.style.width = "70%";
-        this.domElement.appendChild(this.turret);
+        // this.parent.appendChild(this.turret);
 
         /* left: 0.1rem;
           top: -4rem;
@@ -69,25 +69,27 @@ class Player {
 
         //step3: append to the dom: `parentElm.appendChild()`
         const boardElm = document.getElementById("board");
+        boardElm.width = "800px";
+        boardElm.height = "800px";
         boardElm.appendChild(this.domElement);
 
 
     }
     accelerate() {
         if (this.arrow.up) {
-            this.acceleration = (this.arrow.left || this.arrow.right) ? this.acceleration += 0.005 : this.acceleration += 0.02
+            this.acceleration = (this.arrow.left || this.arrow.right) ? this.acceleration += 0.5 : this.acceleration += 1
         }
 
     }
     decelerate() {
         if (this.arrow.down) {
-            this.acceleration = (this.arrow.left || this.arrow.right) ? this.acceleration -= 0.005 : this.acceleration -= 0.02
+            this.acceleration = (this.arrow.left || this.arrow.right) ? this.acceleration -= 0.05 : this.acceleration -= 0.2
         }
     }
 
     handleSpeed() {
         if (this.arrow.up) {
-            const speed = -0.25 - this.acceleration
+            const speed = -18 - this.acceleration
 
             if (speed < this.speedLimit) {
                 this.speed = this.speedLimit
@@ -98,7 +100,7 @@ class Player {
 
         if (this.arrow.down) {
 
-            this.speed = 0.3
+            this.speed = 2
         }
 
         console.log(this.speed)
@@ -122,11 +124,11 @@ class Player {
         this.accelerate()
         this.handleSpeed();
         this.handleRotation();
-        this.domElement.style.left = this.x + "vw";
-        this.domElement.style.bottom = this.y + "vh";
+        this.domElement.style.left = this.x + "px";
+        this.domElement.style.bottom = this.y + "px";
         const collidedObs = obstacles.filter(obstacle => detectCollision(this, obstacle))
         if (!this.hasCollided) {
-            this.speedLimit = -2
+            this.speedLimit = -3
         }
 
         if (collidedObs.length > 0) {
@@ -135,7 +137,7 @@ class Player {
 
         }
         else {
-            this.speedLimit = -2
+            this.speedLimit = -10
             this.hasCollided = false
         }
 
@@ -160,44 +162,47 @@ class Player {
 
 
 
-class Turret extends Player {
+// class Turret {
 
-    constructor(x, y) {
-        super(x, y)
-        // this.x = x.bind(player)
-        // this.y = y.bind(player)
-        this.x = x
-        this.y = y
-        this.width = 5;
-        this.height = 8;
-        this.cannonRotation = 0;
-        this.rotation = 0;
-        this.turret = null;
-        this.createDomElement();
-        console.log("turret created")
-
-    }
-    createDomElement() {
-        // this.turret = document.createElement('img');
-        // this.turret.id = "turret1";
-        // this.turret.src = "./css/tank_cannon.png";
-        // this.turret.width = this.width;
-        // this.turret.height = this.height;
-        // console.log(this.x, this.y, this.turret.id)
-        // this.domElement.appendChild(this.turret);
-        this.turret.style.left = this.x + "vw";
-        this.turret.style.bottom = this.y + 2 + "vh";
-        const boardElm = document.getElementById("board");
-        boardElm.appendChild(this.turret);
-    }
+//     constructor(x, y, move) {
 
 
+//         this.x = x
+//         this.y = y
+//         this.width = 3;
+//         this.height = 8;
+//         this.cannonRotation = 0;
+//         this.rotation = 0;
+//         this.turret = null;
+//         this.createDomElement();
+//         console.log("turret created")
 
-}
+
+//     }
+//     createDomElement() {
+//         // this.turret = document.createElement('img');
+//         // this.turret.id = "turret1";
+//         // this.turret.src = "./css/tank_cannon.png";
+//         // this.turret.width = this.width;
+//         // this.turret.height = this.height;
+//         // console.log(this.x, this.y, this.turret.id)
+//         // this.domElement.appendChild(this.turret);
+
+//         this.turret = document.createElement('div');
+//         this.turret.id = "turret1";
+//         this.turret.style.width = this.width + "vw";
+//         this.turret.style.height = this.height + "vh";
+//         this.turret.style.backgroundColor = "red"
+
+//         this.turret.style.left = this.x + "vw";
+//         this.turret.style.bottom = this.y + 2 + "vh";
+//         const boardElm = document.getElementById("board");
+//         boardElm.appendChild(this.turret);
+//     }
 
 
 
-// const a = new Turret()
+// }
 
-// console.log(a.width)
+
 

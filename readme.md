@@ -52,3 +52,7 @@ main building is in the centre . if it is destroyed game over
 - bullet - damages or destroys it
 - building - UFO destroyed - buidling damaged
 - tank - damages tank, destroys UFO
+
+## Link
+
+[https://carsig.github.io/oop-game1/]

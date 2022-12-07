@@ -1,60 +1,7 @@
 
-const obstacles = [new Obstacle(10, 10, 55, 55, "#8f8"), new Obstacle(5, 8, 80, 10, "#88f")]
+const obstacles = [new Building(101, 101, 552, 525, "#8f8", "building", 5), new Building(150, 80, 380, 320, "#88f", "building", 10)]
 
 const player = new Player();
-
-
-// const detectCollision = (first, second) => {
-//     const collision = first.x < second.x + second.width &&
-//         first.x + first.width > second.x &&
-//         first.y < second.y + second.height &&
-//         first.height + first.y > second.y
-
-//     if (
-//         collision
-//     ) {
-//         switch (first.constructor) {
-//             case Bullet:
-//                 console.log("bullet collision detected!!")
-//                 break;
-//             case Player:
-//                 console.log("player collision detected!!")
-//                 first.speedLimit = 0.001
-//                 console.log(first.speedLimit)
-//                 break;
-//             default: console.log("collision detected!!");
-//         }
-//     }
-// }
-
-
-
-// setInterval(() => {
-//     obstacles.forEach((obstacleInstance) => {
-//         detectCollision(player, obstacleInstance)
-//         bulletsArr.forEach((bullet) => {
-//             detectCollision(bullet, obstacleInstance)
-
-//         });
-
-//     }, 100)
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 document.addEventListener('keyup', function (event) {
     switch (event.key) {
