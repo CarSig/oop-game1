@@ -40,13 +40,7 @@ const detectCollision = (actor, target) => {
             case UFO:
                 if (target.constructor === Building) {
                     actor.destroy()
-                    setTimeout(() => {
-                        console.log(target.health)
-                        target.health = target.health - 1
-                        target.domElement.className = `building ${target.health > 0 ? "building-hp" + target.health : " building-destroyed"}`
-
-
-                    }, 130)
+                    target.takeDamage()
                     return true
                 }
 
@@ -97,6 +91,15 @@ class Building extends Item {
         this.health = health;
         console.log(this)
         console.log(this.health)
+    }
+    takeDamage() {
+        this.domElement.className = `building ${this.health > 0 ? "building-hp" + this.health : " building-destroyed"}`
+        console.log(this.health)
+        this.health = this.health - 1
+        if (this.health < 0) {
+
+            //remove building
+        }
     }
 }
 
