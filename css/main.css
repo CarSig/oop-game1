@@ -29,6 +29,19 @@ body {
   filter: drop-shadow(15px 15px 5px #22222298);
 }
 
+.building .building-hp3 {
+  background-image: url("../assets/img/building_dmg1.png");
+}
+.building .building-hp2 {
+  background-image: url("../assets/img/building_dmg2.png");
+}
+.building .building-hp1 {
+  background-image: url("../assets/img/building_dmg3.png");
+}
+.building .building-hp0 {
+  background-image: url("../assets/img/building_destroyed.png");
+}
+
 .ufo {
   position: absolute;
 
@@ -81,7 +94,23 @@ img {
   /* transform-origin: 50% 1270%; */
   -webkit-filter: drop-shadow(5px 5px 5px #222222ce);
   filter: drop-shadow(5px 5px 5px #222222ce);
-  border-top: 5px solid rgb(45, 160, 41);
+  /* border-top: 5px solid rgb(45, 160, 41); */
+  /* padding-top: 5px; */
+  /* border-image: linear-gradient(#333, #333 50%, #eee 75%, #333 75%); */
+  border-image: linear-gradient(to left, red 0%, green 0%) 2;
+
+  border-width: 6px 0 0 0;
+  border-style: solid;
+}
+
+#imgTank .hp3 {
+  border-image: linear-gradient(to left, red 25%, green 25%) 2;
+}
+#imgTank .hp2 {
+  border-image: linear-gradient(to left, red 50%, green 50%) 2;
+}
+#imgTank .hp1 {
+  border-image: linear-gradient(to left, red 75%, green 75%) 2;
 }
 
 #imgTurret {
