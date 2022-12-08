@@ -25,7 +25,7 @@ class Player {
         this.angle = 0;
         this.moveAngle = 0;
         this.acceleration = 0
-        this.speedLimit = -10;
+        this.speedLimit = -12;
         this.createDomElement();
         this.arrow = {
             up: false,

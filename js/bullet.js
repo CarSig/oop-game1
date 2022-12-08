@@ -54,26 +54,26 @@ class Bullet {
                 const isCollision = detectCollision(this, obstacleInstance)
 
                 if (isCollision) {
-                    clearInterval(bulletInterval)
-                    this.domElement.remove()
-                    console.log(this)
-                    console.log("bullet removed")
+                    this.removeBullet(bulletInterval)
+
+
                 }
 
                 UFOarr.forEach((UFOinstance) => {
                     const isCollision = detectCollision(this, UFOinstance)
                     if (isCollision) {
                         UFOinstance.classList.add = "destroyed"
+                        this.removeBullet(bulletInterval)
                         setTimeout(() => {
 
                             UFOinstance.domElement.remove()
-                            clearInterval(bulletInterval)
-                            this.domElement.remove()
+
+
+                            // clearInterval(bulletInterval)
+                            // this.domElement.remove()
                         }, 100)
 
 
-                        console.log(this)
-                        console.log("UFO shot")
                     }
                 })
 
@@ -83,9 +83,9 @@ class Bullet {
 
             }, 50)
         })
+    }
 
-
-
-
+    removeBullet(int) {
+        this.domElement.remove()
     }
 }
