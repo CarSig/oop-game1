@@ -84,8 +84,7 @@ class Player {
 
         //step3: append to the dom: `parentElm.appendChild()`
         const boardElm = document.getElementById("board");
-        boardElm.width = "800px";
-        boardElm.height = "800px";
+
         boardElm.appendChild(this.domElement);
 
 
