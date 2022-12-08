@@ -42,8 +42,11 @@ const detectCollision = (actor, target) => {
                     actor.domElement.classList.add("destroyed")
 
                     setTimeout(() => {
-
                         actor.domElement.remove();
+                        console.log(target.health)
+                        target.health = target.health - 1
+                        target.domElement.className = `building ${target.health > 0 ? "building-hp" + target.health : " building-destroyed"}`
+
                     }, 130)
                     return true
                 }
@@ -84,18 +87,17 @@ class Item {
         const boardElm = document.getElementById("board");
         boardElm.appendChild(this.domElement);
     }
-    read() {
-        console.log(this.color)
-    }
+
 
 
 }
 
 class Building extends Item {
-    constructor(width, height, x, y, color, type, health,) {
-        super(width, height, x, y, color, type)
+    constructor(width, height, x, y, type, health,) {
+        super(width, height, x, y, type)
         this.health = health;
         console.log(this)
+        console.log(this.health)
     }
 }
 
