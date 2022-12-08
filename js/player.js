@@ -33,7 +33,8 @@ class Player {
             left: false,
             right: false,
             canonLeft: false,
-            canonRight: false
+            canonRight: false,
+            spaceBar: false
         };
         this.cannonRotation = 0;
         this.hasCollided = false;
@@ -165,8 +166,12 @@ class Player {
 
     }
     shot() {
-        const bullet = new Bullet(this.x, this.y, 2, 100, this.cannonRotation, this.angle, this.moveAngle, this.rotation)
-        bulletsArr.push(bullet)
+        if (this.arrow.spaceBar) {
+            const bullet = new Bullet(this.x, this.y, 2, 100, this.cannonRotation, this.angle, this.moveAngle, this.rotation)
+            bulletsArr.push(bullet)
+        }
+
+
     }
 
 

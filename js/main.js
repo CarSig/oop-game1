@@ -25,6 +25,8 @@ document.addEventListener('keyup', function (event) {
         case "q":
             player.arrow.canonRight = false;
             break;
+        case " ":
+            player.arrow.spaceBar = false
     }
 });
 
@@ -46,14 +48,14 @@ document.addEventListener('keydown', function (event) {
             break;
         case "q": player.cannonRotation -= 3
             break;
-        case " ": player.shot()
-            console.log("shot")
+        case " ": player.arrow.spaceBar = true
             break
 
     }
 
     player.move()
     player.rotateCannon()
+    player.shot()
     // player.createDomElement();
 });
 
