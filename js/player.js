@@ -13,9 +13,6 @@ const bulletsArr = [];
 
 
 
-
-
-
 class Player {
     constructor() {
         this.width = 42;

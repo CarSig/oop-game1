@@ -107,43 +107,63 @@ class UFO extends Item {
         this.moveAngle = 1
         this.angle = 0;
         this.speed = 3
+
     }
-    move() {
+    moveToCenterOfBoard() {
         setInterval(() => {
-            this.handleRotation()
-            const random = Math.floor(Math.random() * 100)
-            this.moveAngle = random < 99 ? this.moveAngle : -this.moveAngle
+            this.x = this.x < 400 ? this.x + 1 : this.x - 1
+            this.y = this.y < 400 ? this.y + 1 : this.y - 1
             this.domElement.style.left = this.x + "px";
             this.domElement.style.bottom = this.y + "px";
-            const playerCollision = detectCollision(this, player)
+        }, 50)
+    }
 
 
-            obstacles.forEach((obstacleInstance) => {
-                const collision = detectCollision(this, obstacleInstance)
-                if (collision) {
+
+    move() {
+
+        setTimeout(() => {
+            setInterval(() => {
+
+                if ((this.x < 50 && this.x > 750) || (this.y < 50 && this.y > 750)) {
+                    this.moveToCenterOfBoard()
+                }
+
+                this.handleRotation()
+                const random = Math.floor(Math.random() * 100)
+                this.moveAngle = random < 99 ? this.moveAngle : -this.moveAngle
+                this.domElement.style.left = this.x + "px";
+                this.domElement.style.bottom = this.y + "px";
+
+                const playerCollision = detectCollision(this, player)
+
+
+                obstacles.forEach((obstacleInstance) => {
+                    const collision = detectCollision(this, obstacleInstance)
+                    if (collision) {
+                        this.domElement.classList.add("destroyed")
+
+                        setTimeout(() => {
+
+                            this.domElement.remove();
+                            // obstacleInstance.domElement.remove();
+                        }, 130)
+                    }
+                })
+
+                if (playerCollision) {
+
                     this.domElement.classList.add("destroyed")
 
                     setTimeout(() => {
 
                         this.domElement.remove();
-                        // obstacleInstance.domElement.remove();
                     }, 130)
                 }
-            })
-
-            if (playerCollision) {
-
-                this.domElement.classList.add("destroyed")
-
-                setTimeout(() => {
-
-                    this.domElement.remove();
-                }, 130)
-            }
 
 
-        }, 50)
-
+            }, 50)
+        }, 500)
 
     }
 
@@ -171,18 +191,22 @@ const UFOarr = []
 
 
 setInterval(() => {
-    //random number between 0 and
-    const randomSide = Math.floor(Math.random() * 2) == 1 ? 0 : 800;
-    const isXRandomSide = Math.floor(Math.random() * 2) === 1 ? true : false;
-    const x = isXRandomSide ? randomSide : Math.floor(Math.random() * 800);
-    const y = isXRandomSide ? Math.floor(Math.random() * 800) : randomSide;
+    const { x, y } = getUFOstartPosition();
+
 
     const newUFO = new UFO(45, 45, x, y, "ufo", 10);
     UFOarr.push(newUFO);
     newUFO.move();
 
     console.log(UFOarr);
-}, 5000);
+}, 1000);
 
 
 
+const getUFOstartPosition = () => {
+    const randomSide = Math.floor(Math.random() * 2) == 1 ? 0 : 760;
+    const isXRandomSide = Math.floor(Math.random() * 2) === 1 ? true : false;
+    const x = isXRandomSide ? randomSide : Math.floor(Math.random() * 760);
+    const y = isXRandomSide ? Math.floor(Math.random() * 760) : 760;
+    return { x, y }
+}

@@ -34,8 +34,10 @@ body {
 
   background-image: url("./ufo2.png");
   background-size: cover;
-  -webkit-filter: drop-shadow(15px 15px 5px #22222298);
-  filter: drop-shadow(15px 15px 5px #22222298);
+  -webkit-filter: drop-shadow(15px 15px 5px #d0db31d0);
+  filter: drop-shadow(15px 15px 5px #d0db31d0);
+  /* -webkit-filter: drop-shadow(15px 15px 5px #22222298);
+  filter: drop-shadow(15px 15px 5px #22222298); */
 }
 
 .destroyed {
