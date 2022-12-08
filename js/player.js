@@ -1,10 +1,10 @@
 const bulletsArr = [];
 class Player {
     constructor() {
-        this.width = 75;
-        this.height = 100;
-        this.x = 50;
-        this.y = 50;
+        this.width = 42;
+        this.height = 75;
+        this.x = 550;
+        this.y = 250;
         this.domElement = null;
         this.turret = null;
         this.speed = 0;
@@ -77,19 +77,19 @@ class Player {
     }
     accelerate() {
         if (this.arrow.up) {
-            this.acceleration = (this.arrow.left || this.arrow.right) ? this.acceleration += 0.5 : this.acceleration += 1
+            this.acceleration = (this.arrow.left || this.arrow.right) ? this.acceleration += 0.15 : this.acceleration += 0.4
         }
 
     }
     decelerate() {
         if (this.arrow.down) {
-            this.acceleration = (this.arrow.left || this.arrow.right) ? this.acceleration -= 0.05 : this.acceleration -= 0.2
+            this.acceleration = (this.arrow.left || this.arrow.right) ? this.acceleration -= 0.15 : this.acceleration -= 0.4
         }
     }
 
     handleSpeed() {
         if (this.arrow.up) {
-            const speed = -18 - this.acceleration
+            const speed = -7 - this.acceleration
 
             if (speed < this.speedLimit) {
                 this.speed = this.speedLimit
@@ -100,7 +100,7 @@ class Player {
 
         if (this.arrow.down) {
 
-            this.speed = 2
+            this.speed = 4
         }
 
         console.log(this.speed)

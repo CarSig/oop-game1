@@ -7,11 +7,11 @@
 - shooting
 - obstacles
 - collision tank obstacle & bullet obstacle
+- create enemies
 
 ## to do:
 
 - hit points - dmg
-- create enemies
 
 ## extras:
 
@@ -24,17 +24,12 @@
 
 ## Questions:
 
-1.)detect collision checks with interval. Once collision detected, how to check when condition stops - idea for now .. object have attribute has collided --- done for bullets
-2.) How to make class turret inherits x and y postion from class Tank (currently player)
-
 ##
 
 ## brainstorm
 
 obstacles (UFO class) appeara at random side of the screen and move in random direction.
 once it gets of the board, it is destoryed
-
-Static obstacles will be renamed Buildings -
 
 if UFO collides with builidng it is destroyed but damages building
 

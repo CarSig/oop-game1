@@ -1,5 +1,5 @@
 
-const obstacles = [new Building(101, 101, 552, 525, "building", 5), new Building(100, 100, 380, 320, "building", 10)]
+const obstacles = [new Building(100, 100, 652, 625, "building", 5), new Building(100, 100, 280, 320, "building", 10)]
 
 const player = new Player();
 
@@ -24,7 +24,7 @@ document.addEventListener('keyup', function (event) {
             break;
         case "q":
             player.arrow.canonRight = false;
-            break;
+            break; wwwwwwwwww
     }
 });
 
@@ -61,4 +61,7 @@ document.addEventListener('keydown', function (event) {
 
 
 
+
+
+//  detect collision with the edges of the screen
 

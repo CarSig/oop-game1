@@ -62,8 +62,15 @@ class Bullet {
                 UFOarr.forEach((UFOinstance) => {
                     const isCollision = detectCollision(this, UFOinstance)
                     if (isCollision) {
-                        clearInterval(bulletInterval)
-                        this.domElement.remove()
+                        UFOinstance.classList.add = "destroyed"
+                        setTimeout(() => {
+
+                            UFOinstance.domElement.remove()
+                            clearInterval(bulletInterval)
+                            this.domElement.remove()
+                        }, 100)
+
+
                         console.log(this)
                         console.log("UFO shot")
                     }

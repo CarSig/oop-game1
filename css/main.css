@@ -5,6 +5,7 @@ body {
 
 #board {
   height: 100vh;
+  width: 100vw;
   position: relative;
   /* background-color: rgb(73, 43, 31); */
   background-image: url("./terrain.jpg");
@@ -13,9 +14,7 @@ body {
 
 #player {
   position: absolute;
-  background-color: rgb(59, 207, 163);
-  /* border-top: 6px solid #ff8; */
-  background-image: "url(https://i.picsum.photos/id/448/200/300.jpg?hmac=9a1pqR60H2xWN80jPWfmdVkRII-wEQZceiSHpJSZnE4)";
+
   /* transform: rotate(350deg); */
   /* offset-path: path("M-70,-40 C-70,70 70,70 70,-40"); */
 }
@@ -26,6 +25,8 @@ body {
   background-image: url("./building.png");
   background-size: cover;
   outline: 2px solid green;
+  -webkit-filter: drop-shadow(15px 15px 5px #22222298);
+  filter: drop-shadow(15px 15px 5px #22222298);
 }
 
 .ufo {
@@ -35,6 +36,11 @@ body {
   background-size: cover;
   -webkit-filter: drop-shadow(15px 15px 5px #22222298);
   filter: drop-shadow(15px 15px 5px #22222298);
+}
+
+.destroyed {
+  -webkit-filter: drop-shadow(15px 15px 5px #b41313d2);
+  filter: drop-shadow(15px 15px 5px #d30a0a98);
 }
 
 img {
@@ -55,15 +61,17 @@ img {
 
 #parentTank {
   position: relative;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
 
 #imgTank {
   position: absolute;
   /* width: 100%; */
   height: auto;
-  outline: 1px solid blue;
+  /* outline: 1px solid blue; */
   /* transform-origin: 50% 1270%; */
+  -webkit-filter: drop-shadow(5px 5px 5px #222222ce);
+  filter: drop-shadow(5px 5px 5px #222222ce);
 }
 
 #imgTurret {
@@ -74,6 +82,7 @@ img {
   transform-origin: 50% 80%;
   z-index: 1;
   bottom: 8%;
-
-  outline: 1px solid yellow;
+  -webkit-filter: drop-shadow(5px 5px 5px #222222ce);
+  filter: drop-shadow(5px 5px 5px #222222ce);
+  /* outline: 1px solid yellow; */
 }

@@ -1,0 +1,18 @@
+{
+  "editor.tokenColorCustomizations": {
+    "[dark_vs]": {
+      "textMateRules": [
+        {
+          "name": "html tags",
+          "scope": ["entity.name.tag"],
+          "settings": {
+            "foreground": "#45974a",
+            "fontStyle": "bold"
+          }
+        }
+      ]
+    },
+    "comments": "",
+    "textMateRules": []
+  }
+}

@@ -13,21 +13,38 @@ const detectCollision = (actor, target) => {
         switch (actor.constructor) {
             case Bullet:
                 if (target.constructor === UFO) {
-                    target.domElement.remove();
+                    target.domElement.classList.add("destroyed")
+
+                    setTimeout(() => {
+
+                        target.domElement.remove();
+                    }, 130)
                 }
                 actor.domElement.remove();
                 return true;
                 break;
             case Player:
-                console.log("player collision detected!!")
-                actor.speedLimit = 0
-                console.log(actor.speedLimit)
-                return true
+                if (target.constructor === UFO) {
+                    console.log("player collision with UFO!!")
+
+                    return true
+                }
+                if (target.constructor === Building) {
+                    console.log("player collision with building!!")
+                    actor.speedLimit = 0
+                    return true
+                }
+
                 break;
 
             case UFO:
                 if (target.constructor === Building) {
-                    console.log("ufo collision with building!!")
+                    actor.domElement.classList.add("destroyed")
+
+                    setTimeout(() => {
+
+                        actor.domElement.remove();
+                    }, 130)
                     return true
                 }
 
@@ -98,7 +115,32 @@ class UFO extends Item {
             this.moveAngle = random < 99 ? this.moveAngle : -this.moveAngle
             this.domElement.style.left = this.x + "px";
             this.domElement.style.bottom = this.y + "px";
-            detectCollision(this, player)
+            const playerCollision = detectCollision(this, player)
+
+            obstacles.forEach((obstacleInstance) => {
+                const collision = detectCollision(this, obstacleInstance)
+                if (collision) {
+                    this.domElement.classList.add("destroyed")
+
+                    setTimeout(() => {
+
+                        this.domElement.remove();
+                        // obstacleInstance.domElement.remove();
+                    }, 130)
+                }
+            })
+
+            if (playerCollision) {
+
+                this.domElement.classList.add("destroyed")
+
+                setTimeout(() => {
+
+                    this.domElement.remove();
+                }, 130)
+            }
+
+
         }, 50)
     }
 
@@ -117,7 +159,7 @@ class UFO extends Item {
 }
 
 const UFOarr = []
-const colorArr = ["red", "blue", "green", "yellow", "orange", "purple"]
+
 //create UFO
 setInterval(() => {
     //random number between 0 and
@@ -125,7 +167,7 @@ setInterval(() => {
     const isXRandomSide = Math.floor(Math.random() * 2) === 1 ? true : false;
     const x = isXRandomSide ? randomSide : Math.floor(Math.random() * 800);
     const y = isXRandomSide ? Math.floor(Math.random() * 800) : randomSide;
-    const randomColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+
     const newUFO = new UFO(45, 45, x, y, "ufo", 10);
     UFOarr.push(newUFO);
     newUFO.move();
