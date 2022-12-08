@@ -55,7 +55,7 @@ body {
   filter: drop-shadow(15px 15px 5px #22222298); */
 }
 
-.destroyed {
+.dummy {
   -webkit-filter: drop-shadow(15px 15px 5px #b41313d2);
   filter: drop-shadow(15px 15px 5px #d30a0a98);
 }

@@ -64,6 +64,3 @@ document.addEventListener('keydown', function (event) {
 
 
 
-
-//  detect collision with the edges of the screen
-
