@@ -1,18 +1,6 @@
 const bulletsArr = [];
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 class Player {
     constructor() {
         this.width = 42;
@@ -38,6 +26,7 @@ class Player {
         };
         this.cannonRotation = 0;
         this.hasCollided = false;
+        this.health = 4
 
     }
 
@@ -142,7 +131,7 @@ class Player {
         this.domElement.style.bottom = this.y + "px";
         const collidedObs = obstacles.filter(obstacle => detectCollision(this, obstacle))
         if (!this.hasCollided) {
-            this.speedLimit = -3
+            this.speedLimit = -13
         }
 
         if (collidedObs.length > 0) {
@@ -172,7 +161,17 @@ class Player {
 
 
     }
+    takeDamage() {
+        this.health = this.health - 1
+        this.img.className = this.health >= 0 ? `hp${this.health}` : "destroyed"
+        // alert(this.health)
+        console.log(this.img)
 
+        if (this.health < 0) {
+
+            //remove building
+        }
+    }
 
 
 }

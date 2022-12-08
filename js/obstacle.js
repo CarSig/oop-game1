@@ -14,13 +14,14 @@ const detectCollision = (actor, target) => {
             case Bullet:
                 if (target.constructor === UFO) {
                     target.domElement.classList.add("destroyed")
-
+                    target.destroy()
                     setTimeout(() => {
 
                         target.domElement.remove();
                     }, 130)
+
                 }
-                actor.domElement.remove();
+
                 return true;
                 break;
             case Player:
@@ -45,7 +46,8 @@ const detectCollision = (actor, target) => {
                 }
 
                 if (target.constructor === Player) {
-                    console.log("ufo collision with player!!")
+                    actor.destroy()
+                    target.takeDamage()
                     return true
                 }
             default: console.log("collision detected!!");
@@ -86,9 +88,9 @@ class Item {
 }
 
 class Building extends Item {
-    constructor(width, height, x, y, type, health,) {
+    constructor(width, height, x, y, type) {
         super(width, height, x, y, type)
-        this.health = health;
+        this.health = 3;
         console.log(this)
         console.log(this.health)
     }
@@ -157,12 +159,7 @@ class UFO extends Item {
 
                 if (playerCollision) {
 
-                    this.domElement.classList.add("destroyed")
-
-                    setTimeout(() => {
-
-                        this.domElement.remove();
-                    }, 130)
+                    this.destroy()
                 }
 
 
@@ -184,11 +181,15 @@ class UFO extends Item {
 
     }
     destroy() {
-        console.log("destroyed")
+
         this.domElement.classList.add("destroyed")
-        setTimeout(() => {
-            this.domElement.remove();
-        }, 130)
+
+        this.domElement.remove();
+        this.x = 0
+        this.y = 0
+        this.speed = 0
+
+
     }
     // check if ufo is out of bounds
 
@@ -205,7 +206,12 @@ setInterval(() => {
     let newUFO = new UFO(45, 45, x, y, "ufo", 10);
     UFOarr.push(newUFO);
     newUFO.move();
+    setTimeout(() => {
 
+        newUFO.destroy();
+        UFOarr.splice(UFOarr.indexOf(newUFO), 1)
+
+    }, 9000)
     console.log(UFOarr);
 }, 1000);
 

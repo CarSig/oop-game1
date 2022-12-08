@@ -114,7 +114,9 @@ img {
 #imgTank .hp1 {
   border-image: linear-gradient(to left, red 75%, green 75%) 2;
 }
-
+#imgTank .hp0 {
+  border-image: linear-gradient(to left, red 75%, green 75%) 2;
+}
 #imgTurret {
   position: absolute;
   width: 100%;
