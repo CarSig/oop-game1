@@ -1,3 +1,11 @@
+const isGameOver = () => {
+    const buildingsAlive = obstacles.filter(building => building.health > 0)
+    const playerHealth = player.health
+    if (buildingsAlive.length === 0 || playerHealth <= 0) {
+        console.log("game over")
+    }
+}
+
 
 
 const detectCollision = (actor, target) => {
@@ -35,6 +43,8 @@ const detectCollision = (actor, target) => {
             default: console.log("collision detected!!", actor, target);
         }
     }
+
+    isGameOver()
     return collision
 }
 
