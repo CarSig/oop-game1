@@ -3,7 +3,7 @@ class Player {
     constructor() {
         this.width = 75;
         this.height = 100;
-        this.x = 50 - (this.width / 2);
+        this.x = 50;
         this.y = 50;
         this.domElement = null;
         this.turret = null;
@@ -34,7 +34,7 @@ class Player {
         // this.parentTank = document.createElement('div');
 
         this.img = document.createElement('img');
-        this.img.src = "./css/tank_body.png";
+        this.img.src = "./css/tank_body1.png";
         this.img.id = "imgTank"
 
         // it is necessary to create a parent div to make sure the turret is always at the right place regardless of screen size
@@ -56,7 +56,7 @@ class Player {
         this.turret = document.createElement('img');
         this.turret.id = "imgTurret";
 
-        this.turret.src = "./css/tank_cannon.png";
+        this.turret.src = "./css/tank_turret.png";
         this.parent.appendChild(this.turret);
         // this.turret.style.bottom = "-1vh";
         // this.turret.style.left = "0.2vw";

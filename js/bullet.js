@@ -1,7 +1,7 @@
 class Bullet {
     constructor(x, y, speed, range, cannonRotation, angle, moveAngle, rotation) {
         this.x = x + 27;
-        this.y = y + 75;
+        this.y = y + 55;
         this.speed = speed;
         this.range = range;
         this.cannonRotation = cannonRotation;
@@ -58,6 +58,21 @@ class Bullet {
                     console.log(this)
                     console.log("bullet removed")
                 }
+
+                UFOarr.forEach((UFOinstance) => {
+                    const isCollision = detectCollision(this, UFOinstance)
+                    if (isCollision) {
+                        clearInterval(bulletInterval)
+                        this.domElement.remove()
+                        console.log(this)
+                        console.log("UFO shot")
+                    }
+                })
+
+
+
+
+
             }, 50)
         })
 

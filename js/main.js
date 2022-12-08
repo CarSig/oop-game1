@@ -1,5 +1,5 @@
 
-const obstacles = [new Building(101, 101, 552, 525, "#8f8", "building", 5), new Building(150, 80, 380, 320, "#88f", "building", 10)]
+const obstacles = [new Building(101, 101, 552, 525, "building", 5), new Building(100, 100, 380, 320, "building", 10)]
 
 const player = new Player();
 

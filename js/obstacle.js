@@ -12,7 +12,9 @@ const detectCollision = (actor, target) => {
     ) {
         switch (actor.constructor) {
             case Bullet:
-                console.log("bullet collision detected!!")
+                if (target.constructor === UFO) {
+                    target.domElement.remove();
+                }
                 actor.domElement.remove();
                 return true;
                 break;
@@ -22,6 +24,17 @@ const detectCollision = (actor, target) => {
                 console.log(actor.speedLimit)
                 return true
                 break;
+
+            case UFO:
+                if (target.constructor === Building) {
+                    console.log("ufo collision with building!!")
+                    return true
+                }
+
+                if (target.constructor === Player) {
+                    console.log("ufo collision with player!!")
+                    return true
+                }
             default: console.log("collision detected!!");
         }
     }
@@ -30,38 +43,42 @@ const detectCollision = (actor, target) => {
 
 
 class Item {
-    constructor(width, height, x, y, color, type) {
+    constructor(width, height, x, y, type) {
         this.width = width;
         this.height = height;
         this.x = x
         this.y = y
-        this.color = color;
+        // this.color = color;
         this.type = type;
 
-        this.El = null;
+        this.domElement = null;
         this.createDomElement();
     }
     createDomElement() {
 
-        this.El = document.createElement('div');
-        this.El.className = `${this.type}`;
-        this.El.style.width = this.width + "px";
-        this.El.style.height = this.height + "px";
-        this.El.style.bottom = this.y + "px";
-        this.El.style.left = this.x + "px";
-        this.El.style.backgroundColor = this.color;
-        this.El.className = `${this.type}`;
+        this.domElement = document.createElement('div');
+        this.domElement.className = `${this.type}`;
+        this.domElement.style.width = this.width + "px";
+        this.domElement.style.height = this.height + "px";
+        this.domElement.style.bottom = this.y + "px";
+        this.domElement.style.left = this.x + "px";
+        // this.domElement.style.backgroundColor = this.color;
+        this.domElement.className = `${this.type}`;
         const boardElm = document.getElementById("board");
-        boardElm.appendChild(this.El);
+        boardElm.appendChild(this.domElement);
+    }
+    read() {
+        console.log(this.color)
     }
 
 
 }
 
 class Building extends Item {
-    constructor(width, height, x, y, color, type, health) {
+    constructor(width, height, x, y, color, type, health,) {
         super(width, height, x, y, color, type)
         this.health = health;
+        console.log(this)
     }
 }
 
@@ -70,24 +87,55 @@ class UFO extends Item {
         super(width, height, x, y, type)
         this.health = health;
         console.log("UFO created")
+        this.moveAngle = 1 // Math.floor(Math.random() * 360); // mozda treba biti 1 ili -1
+        this.angle = 0;
+        this.speed = 3
+    }
+    move() {
+        setInterval(() => {
+            this.handleRotation()
+            const random = Math.floor(Math.random() * 100)
+            this.moveAngle = random < 99 ? this.moveAngle : -this.moveAngle
+            this.domElement.style.left = this.x + "px";
+            this.domElement.style.bottom = this.y + "px";
+            detectCollision(this, player)
+        }, 50)
+    }
+
+    handleRotation() {
+        const angle = (this.moveAngle * Math.PI) / 180;
+        this.angle += angle;
+        this.x += (this.speed) * Math.sin(this.angle);
+        this.y -= (this.speed) * Math.cos(this.angle);
+        this.rotation = -Math.round(this.angle * 180 / Math.PI)
+        // this.domElement.style.transform = "rotate(" + angle + "deg)";
+        this.domElement.style.transform = "rotate(" + this.rotation + "deg)";
+
+
+
     }
 }
 
 const UFOarr = []
-
+const colorArr = ["red", "blue", "green", "yellow", "orange", "purple"]
 //create UFO
 setInterval(() => {
-
-    const x = Math.random() > 0.5 ? 0 : 1000;
-    const y = Math.ceil(Math.random() * 600);
-    const newUFO = new UFO(50, 50, x, y, "red", "ufo", 10);
+    //random number between 0 and
+    const randomSide = Math.floor(Math.random() * 2) == 1 ? 0 : 800;
+    const isXRandomSide = Math.floor(Math.random() * 2) === 1 ? true : false;
+    const x = isXRandomSide ? randomSide : Math.floor(Math.random() * 800);
+    const y = isXRandomSide ? Math.floor(Math.random() * 800) : randomSide;
+    const randomColor = colorArr[Math.floor(Math.random() * colorArr.length)];
+    const newUFO = new UFO(45, 45, x, y, "ufo", 10);
     UFOarr.push(newUFO);
+    newUFO.move();
+
     console.log(UFOarr);
-}, 3000);
+}, 5000);
 
 
 
-
+// new Building(101, 101, 552, 525, "#8f8", "building", 5)
 
 
 // // Create obstacles
