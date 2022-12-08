@@ -14,36 +14,6 @@ const detectCollision = (actor, target) => {
         actor.y < target.y + target.height &&
         actor.height + actor.y > target.y
 
-    if (collision) {
-        switch (actor.constructor) {
-            case Bullet:
-                if (target.constructor === UFO) {
-                    target.destroyAndCreateDummy()
-
-                }
-
-
-                break;
-            case Player:
-
-                if (target.constructor === Building) {
-
-                    actor.speedLimit = 0
-
-                }
-
-                break;
-
-            case UFO:
-
-                // actor.destroyAndCreateDummy()
-                target.takeDamage()
-
-
-            default: console.log("collision detected!!", actor, target);
-        }
-    }
-
     isGameOver()
     return collision
 }
@@ -130,8 +100,12 @@ class UFO extends Item {
             this.domElement.style.bottom = this.y + "px";
 
             detectCollision(this, player) ? this.destroyAndCreateDummy() : null
-            obstacles.forEach((obstacleInstance) => detectCollision(this, obstacleInstance) ? this.
-                destroyAndCreateDummy() : null)
+            obstacles.forEach((obstacleInstance) => {
+                if (detectCollision(this, obstacleInstance)) {
+                    this.destroyAndCreateDummy()
+                    obstacleInstance.takeDamage()
+                }
+            })
         }, 50)
 
 
