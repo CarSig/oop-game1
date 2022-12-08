@@ -39,13 +39,12 @@ const detectCollision = (actor, target) => {
 
             case UFO:
                 if (target.constructor === Building) {
-                    actor.domElement.classList.add("destroyed")
-
+                    actor.destroy()
                     setTimeout(() => {
-                        actor.domElement.remove();
                         console.log(target.health)
                         target.health = target.health - 1
                         target.domElement.className = `building ${target.health > 0 ? "building-hp" + target.health : " building-destroyed"}`
+
 
                     }, 130)
                     return true
@@ -181,6 +180,13 @@ class UFO extends Item {
         handleScreenEdge(this)
 
     }
+    destroy() {
+        console.log("destroyed")
+        this.domElement.classList.add("destroyed")
+        setTimeout(() => {
+            this.domElement.remove();
+        }, 130)
+    }
     // check if ufo is out of bounds
 
 
@@ -193,7 +199,7 @@ setInterval(() => {
     const { x, y } = getUFOstartPosition();
 
 
-    const newUFO = new UFO(45, 45, x, y, "ufo", 10);
+    let newUFO = new UFO(45, 45, x, y, "ufo", 10);
     UFOarr.push(newUFO);
     newUFO.move();
 
@@ -215,4 +221,10 @@ const handleScreenEdge = (element) => {
     if (element.x > 1600 || element.x < -1 || element.y > 800 || element.y < 30) {
         element.domElement.remove();
     }
+}
+
+
+function destroyObject(object) {
+    object.domElement.remove();
+    object = null;
 }
