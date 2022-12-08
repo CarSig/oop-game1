@@ -176,10 +176,7 @@ class UFO extends Item {
         // this.domElement.style.transform = "rotate(" + angle + "deg)";
         this.domElement.style.transform = "rotate(" + this.rotation + "deg)";
 
-        if (this.x > 800 || this.x < 0 || this.y > 800 || this.y < 0) {
-
-            this.domElement.remove();
-        }
+        handleScreenEdge(this)
 
     }
     // check if ufo is out of bounds
@@ -206,7 +203,14 @@ setInterval(() => {
 const getUFOstartPosition = () => {
     const randomSide = Math.floor(Math.random() * 2) == 1 ? 0 : 760;
     const isXRandomSide = Math.floor(Math.random() * 2) === 1 ? true : false;
-    const x = isXRandomSide ? randomSide : Math.floor(Math.random() * 760);
+    const x = isXRandomSide ? randomSide : Math.floor(Math.random() * 1400);
     const y = isXRandomSide ? Math.floor(Math.random() * 760) : 760;
     return { x, y }
+}
+
+
+const handleScreenEdge = (element) => {
+    if (element.x > 1600 || element.x < -1 || element.y > 800 || element.y < 30) {
+        element.domElement.remove();
+    }
 }

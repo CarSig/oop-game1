@@ -1,27 +1,4 @@
 
-class Game {
-    constructor() {
-        this.board = null;
-        this.player = null;
-        this.createBoard();
-        this.createPlayer();
-    }
-
-    createBoard() {
-        this.board = new Board();
-    }
-
-    createPlayer() {
-        this.player = new Player();
-    }
-
-
-
-
-}
-
-
-
 
 
 
@@ -50,4 +27,3 @@ class Board {
 }
 
 
-const board = new Board();

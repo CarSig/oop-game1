@@ -65,6 +65,13 @@ img {
   position: relative;
   /* outline: 1px solid red; */
 }
+/* #imgTank::before {
+  content: "rwwwr";
+  position: absolute;
+  top: 0;
+
+  padding-top: 100%;
+} */
 
 #imgTank {
   position: absolute;
@@ -74,6 +81,7 @@ img {
   /* transform-origin: 50% 1270%; */
   -webkit-filter: drop-shadow(5px 5px 5px #222222ce);
   filter: drop-shadow(5px 5px 5px #222222ce);
+  border-top: 5px solid rgb(45, 160, 41);
 }
 
 #imgTurret {

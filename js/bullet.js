@@ -38,7 +38,7 @@ class Bullet {
             this.y += Math.cos(this.bulletDirection) ///* this.speed;
             this.domElement.style.left = this.x + "px";
             this.domElement.style.bottom = this.y + "px";
-
+            handleScreenEdge(this)
 
             setTimeout(() => {
 
@@ -49,6 +49,7 @@ class Bullet {
 
         const bulletInterval = setInterval(() => {
             move()
+
             obstacles.forEach((obstacleInstance) => {
                 const isCollision = detectCollision(this, obstacleInstance)
 
