@@ -24,7 +24,7 @@ document.addEventListener('keyup', function (event) {
             break;
         case "q":
             player.arrow.canonRight = false;
-            break; wwwwwwwwww
+            break;
     }
 });
 
