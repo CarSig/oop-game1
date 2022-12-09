@@ -73,7 +73,7 @@ class UFO extends Item {
     constructor(width, height, x, y, type, health) {
         super(width, height, x, y, type)
         this.health = health;
-        console.log("UFO created")
+
         this.moveAngle = 1
         this.angle = 0;
         this.speed = 3
@@ -102,7 +102,10 @@ class UFO extends Item {
             this.domElement.style.left = this.x + "px";
             this.domElement.style.bottom = this.y + "px";
 
-            detectCollision(this, player) ? this.destroyAndCreateDummy() : null
+            if (detectCollision(this, player)) {
+                this.destroyAndCreateDummy()
+                player.takeDamage()
+            }
             obstacles.forEach((obstacleInstance) => {
                 if (detectCollision(this, obstacleInstance)) {
                     this.destroyAndCreateDummy()
@@ -207,7 +210,7 @@ setInterval(() => {
 
     createUFO()
     counterInterval++
-    console.log("intSpeed", intSpeed);
+
 
 }, intSpeed);
 

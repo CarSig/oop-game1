@@ -4,16 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/main.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/start.css" />
+    <title>Tank vs Aliens</title>
   </head>
 
   <body>
-    <div id="board"></div>
-    <script src="./js/game.js"></script>
-    <script src="./js/obstacle.js"></script>
-    <script src="./js/player.js"></script>
-    <script src="./js/bullet.js"></script>
-    <script src="./js/main.js"></script>
+    <div class="startMenu">
+      <h1>TANK vs ALIENS</h1>
+      <article>
+        <p>
+          Move the tank with the <strong>arrow keys</strong> and shoot with the <strong>spacebar</strong>. Use <strong>"q"</strong> and <strong>"w"</strong> to
+          rotate the turret. <br />Collect 100 points to win the game. If your tank or all buildings are destroyed you lose the game
+        </p>
+      </article>
+      <button id="start-btn">Start Game</button>
+    </div>
+
+    <script src="./js/start.js"></script>
   </body>
 </html>

@@ -53,7 +53,7 @@ class Player {
 
         this.img = document.createElement('img');
         this.img.src = "./css/tank_body1.png";
-        this.img.id = "imgTank"
+        this.img.className = "imgTank"
 
         // it is necessary to create a parent div to make sure the turret is always at the right place regardless of screen size
         this.parent = document.createElement('div');
@@ -115,7 +115,7 @@ class Player {
             this.speed = 4
         }
 
-        console.log(this.speed)
+
 
         // this.speed = this.arrow.up ? (-0.25 - this.acceleration) : this.arrow.down ? 0.3 : 0
         this.moveAngle = this.arrow.left ? 1 : this.arrow.right ? -1 : 0;
@@ -170,16 +170,8 @@ class Player {
     }
     shot() {
         const angle = Math.abs(this.rotation % 360)
-        console.log(angle)
+
         if (this.arrow.spaceBar && this.shootingEnabled) {
-            // const doubleAngle = (angle + this.cannonRotation % 360) === 360 ? 0 : (angle + this.cannonRotation % 360)
-
-            // const totalAngle = doubleAngle > 0 ? doubleAngle : 360 - Math.abs(doubleAngle)
-            // console.log("total angle: " + totalAngle, " cannon angle: " + this.cannonRotation, " tank angle: " + angle)
-
-
-            console.log("screenwidth: " + window.innerWidth, "screenheight: " + window.innerHeight)
-
 
             const bullet = new Bullet(this.x, this.y, 2, 100, this.cannonRotation, this.angle, this.moveAngle, this.rotation)
             bulletsArr.push(bullet)
@@ -194,37 +186,37 @@ class Player {
     }
     takeDamage() {
         this.health = this.health - 1
-        this.img.className = this.health >= 0 ? `hp${this.health}` : "destroyed"
+        this.img.className = this.health >= 0 ? `imgTank hp${this.health}` : "imgTank destroyed"
         // alert(this.health)
-        console.log(this.img)
+        console.log("damage taken")
 
         if (this.health < 0) {
 
-            //remove building
+            alert("you died")
         }
     }
 
     stopMovingOnScreenEdge() {
         if (this.x < 0) {
             this.x = 0
-            // alert("you hit the left side")
+
         }
         if (this.x > window.innerWidth - 2 * this.height) {
             this.x = window.innerWidth - 2 * this.height
-            // alert("you hit the right side")
+
         }
         if (this.y < 42) {
             this.y = 42
-            // alert("you hit the top side")
+
         }
         if (this.y > window.innerHeight - this.height) {
             this.y = window.innerHeight - this.height
-            // alert("you hit the bottom side")
+
         }
     }
     scorePoints() {
         this.score = this.score + 10
-        console.log(this.score)
+
         this.scoreElm.innerHTML = this.score
         if (this.score === 100) {
             alert("you win")

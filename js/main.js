@@ -1,4 +1,8 @@
 
+
+
+
+
 const obstacles = [new Building(150, 150, 420, 270), new Building(80, 80, 950, 355), new Building(80, 80, 385, 550)]
 
 const player = new Player();
@@ -66,7 +70,6 @@ document.addEventListener('keydown', function (event) {
     player.shot()
     // player.createDomElement();
 });
-
 
 
 

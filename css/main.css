@@ -108,7 +108,7 @@ img {
   padding-top: 100%;
 } */
 
-#imgTank {
+.imgTank {
   position: absolute;
   /* width: 100%; */
   height: auto;
@@ -125,17 +125,17 @@ img {
   border-style: solid;
 }
 
-#imgTank .hp3 {
-  border-image: linear-gradient(to left, red 25%, green 25%) 2;
+.hp3 {
+  border-image: linear-gradient(to left, red 20%, green 20%) 2;
 }
-#imgTank .hp2 {
-  border-image: linear-gradient(to left, red 50%, green 50%) 2;
+.hp2 {
+  border-image: linear-gradient(to left, red 40%, green 40%) 2;
 }
-#imgTank .hp1 {
-  border-image: linear-gradient(to left, red 75%, green 75%) 2;
+.hp1 {
+  border-image: linear-gradient(to left, red 60%, green 60%) 2;
 }
-#imgTank .hp0 {
-  border-image: linear-gradient(to left, red 75%, green 75%) 2;
+.hp0 {
+  border-image: linear-gradient(to left, red 80%, green 80%) 2;
 }
 #imgTurret {
   position: absolute;
