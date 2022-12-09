@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0d0e09;
+}
+
+.game-over {
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  margin: 10% 25% 0 25%;
+  background-image: url("../assets/img/game_over.jpg");
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3.8rem;
+  color: #4b5320;
+  font-weight: bold;
+  text-shadow: 2px 3px #b9b792;
+  top: 0;
+  left: 40px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+button {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4b5320;
+  border: none;
+  color: white;
+  padding: 1rem 3rem;
+  text-align: center;
+  border: 2px solid #6b6956;
+
+  font-size: 1.2rem;
+  margin: 4px 2px;
+  cursor: pointer;
+}

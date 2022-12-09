@@ -1,9 +1,9 @@
 const isGameOver = () => {
     const buildingsAlive = obstacles.filter(building => building.health > 0)
     const playerHealth = player.health
-    // if (buildingsAlive.length === 0 || playerHealth <= 0) {
-    //     console.log("game over")
-    // }
+    if (buildingsAlive.length === 0) {
+        window.location.href = './gameover.html';
+    }
 }
 
 const soundtrack = new Audio("./assets/sounds/soundtrack.ogg")

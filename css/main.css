@@ -3,13 +3,33 @@ body {
   padding: 0;
 }
 
-h2 {
+#score {
   position: absolute;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   color: white;
   font-weight: bold;
   top: 0;
   left: 40px;
+  background-color: #22222298;
+  padding: 10px;
+  z-index: 1;
+  width: 8rem;
+
+  background-color: #b9b792c7;
+  border: 2px solid #6b6956;
+  border-radius: 10px;
+  box-shadow: 0 0 8 px 2px #6b6956;
+}
+
+p {
+  padding: 1rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3.8rem;
+  color: #4b5320;
 }
 
 #board {

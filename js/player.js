@@ -80,7 +80,8 @@ class Player {
         const boardElm = document.getElementById("board");
 
         boardElm.appendChild(this.domElement);
-        this.scoreElm = document.createElement('h2');
+        this.scoreElm = document.createElement('div');
+        this.scoreElm.id = "score";
         // this.scoreElm = document.getElementById("score");
         this.scoreElm.innerHTML = "score: " + this.score;
         boardElm.appendChild(this.scoreElm);
@@ -192,7 +193,7 @@ class Player {
 
         if (this.health < 0) {
 
-            alert("you died")
+            window.location.href = './gameover.html';
         }
     }
 
@@ -217,9 +218,9 @@ class Player {
     scorePoints() {
         this.score = this.score + 10
 
-        this.scoreElm.innerHTML = this.score
+        this.scoreElm.innerHTML = "score: " + this.score
         if (this.score === 100) {
-            alert("you win")
+            window.location.href = './victory.html';
         }
     }
 

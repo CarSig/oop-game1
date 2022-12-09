@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.victory {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../assets/img/victory.jpg");
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3.8rem;
+  color: #b12e29;
+  font-weight: bold;
+  text-shadow: 2px 3px #bea3a1;
+  top: 0;
+  left: 40px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  margin-top: 7rem;
+}
+
+button {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #b12e29;
+  border: none;
+  color: white;
+  padding: 1rem 3rem;
+  text-align: center;
+  border: 2px solid #6b6956;
+
+  font-size: 1.2rem;
+  margin: 4px 2px;
+  cursor: pointer;
+}
