@@ -1,53 +1,22 @@
-## PLAN
+## Controls:
 
-## done:
+- Control the tank with arrow keys. Tank accelerates if up arrow is being kept pressed. It is possible to move forward/ backward and rotate simultaneously
+- keys "q" and "w" are used to rotate gun turrets
+- press Spacebar to shot
 
-- movement
-- rotating fo turret
-- shooting
-- obstacles
-- collision tank obstacle & bullet obstacle
-- create enemies
+## Objectives
 
-## to do:
+- Shoot the UFO's. every UFO brings 10 points and 100 points is required for victory
+- Defend your buildings - if all buildings are destroyed games is lost.
+- If your tank is destroyed is also lost game
 
-- hit points - dmg
+## About:
 
-## extras:
+- Game is developed with plain vanilla javascript without any external libraries using object oriented approach
 
-## fixes:
+## Links
 
-- bullet shooting direction
-- bullet shooting start position
-
-##
-
-## Questions:
-
-##
-
-## brainstorm
-
-obstacles (UFO class) appeara at random side of the screen and move in random direction.
-once it gets of the board, it is destoryed
-
-if UFO collides with builidng it is destroyed but damages building
-
-main building is in the centre . if it is destroyed game over
-
-## COLLISIONS
-
-## Tank
-
-- building - stops tank
-- UFO - damages tank, destroys UFO
-
-## UFO
-
-- bullet - damages or destroys it
-- building - UFO destroyed - buidling damaged
-- tank - damages tank, destroys UFO
-
-## Link
-
-[https://carsig.github.io/oop-game1/]
+- Demo:
+  [https://carsig.github.io/oop-game1/]
+- Presentation:
+  [https://docs.google.com/presentation/d/1SAHxR38k1MRRiqmMkrSToyWk1Xelu5bFSY0J-BcWrpc/edit?usp=sharing]
