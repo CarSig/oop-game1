@@ -193,7 +193,7 @@ class Player {
 
         if (this.health < 0) {
 
-            window.location.href = './gameover.html';
+            window.location.href = './game-over.html';
         }
     }
 

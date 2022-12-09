@@ -2,7 +2,7 @@ const isGameOver = () => {
     const buildingsAlive = obstacles.filter(building => building.health > 0)
     const playerHealth = player.health
     if (buildingsAlive.length === 0) {
-        window.location.href = './gameover.html';
+        window.location.href = './game-over.html';
     }
 }
 
