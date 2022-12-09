@@ -6,7 +6,7 @@ const isGameOver = () => {
     // }
 }
 
-const soundtrack = new Audio("../assets/sounds/soundtrack.ogg")
+const soundtrack = new Audio("./assets/sounds/soundtrack.ogg")
 soundtrack.play()
 
 
@@ -168,9 +168,9 @@ class UFO extends Item {
     }
 
     destroyAndCreateDummy(sound = "impact") {
-        let audio = new Audio('../assets/sounds/impact.mp3');
+        let audio = new Audio('./assets/sounds/impact.mp3');
         if (sound === "explosion") {
-            audio = new Audio('../assets/sounds/explosion.mp3');
+            audio = new Audio('./assets/sounds/explosion.mp3');
         }
 
 
