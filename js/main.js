@@ -34,8 +34,8 @@ document.addEventListener('keyup', function (event) {
 document.addEventListener('keydown', function (event) {
     player.moveAngle = 0;
     player.speed = 0;
-    const audioTurret = new Audio('../assets/sounds/tank-turret-rotate.mp3');
-    const audioShot = new Audio('../assets/sounds/tank-shot.mp3');
+
+    const audioShot = new Audio('./assets/sounds/tank-shot.mp3');
 
     switch (event.key) {
         case "ArrowUp": player.arrow.up = true;
