@@ -1,5 +1,5 @@
 
-const obstacles = [new Building(150, 150, 370, 350), new Building(80, 80, 700, 425), new Building(80, 80, 200, 620)]
+const obstacles = [new Building(150, 150, 420, 270), new Building(80, 80, 950, 355), new Building(80, 80, 385, 550)]
 
 const player = new Player();
 
@@ -34,6 +34,8 @@ document.addEventListener('keyup', function (event) {
 document.addEventListener('keydown', function (event) {
     player.moveAngle = 0;
     player.speed = 0;
+    const audioTurret = new Audio('../assets/sounds/tank-turret-rotate.mp3');
+    const audioShot = new Audio('../assets/sounds/tank-shot.mp3');
 
     switch (event.key) {
         case "ArrowUp": player.arrow.up = true;
@@ -41,14 +43,20 @@ document.addEventListener('keydown', function (event) {
         case "ArrowDown": player.arrow.down = true;
             break;
         case "ArrowLeft": player.arrow.left = true
+
             break;
         case "ArrowRight": player.arrow.right = true
+
             break;
-        case "w": player.cannonRotation += 3
+        case "w": player.cannonRotation += 4
+
             break;
-        case "q": player.cannonRotation -= 3
+        case "q": player.cannonRotation -= 4
+
             break;
-        case " ": player.arrow.spaceBar = true
+        case " ":
+            if (player.shootingEnabled) { audioShot.play(); }
+            player.arrow.spaceBar = true
             break
 
     }

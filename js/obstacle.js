@@ -1,10 +1,13 @@
 const isGameOver = () => {
     const buildingsAlive = obstacles.filter(building => building.health > 0)
     const playerHealth = player.health
-    if (buildingsAlive.length === 0 || playerHealth <= 0) {
-        console.log("game over")
-    }
+    // if (buildingsAlive.length === 0 || playerHealth <= 0) {
+    //     console.log("game over")
+    // }
 }
+
+const soundtrack = new Audio("../assets/sounds/soundtrack.ogg")
+soundtrack.play()
 
 
 
@@ -119,8 +122,9 @@ class UFO extends Item {
         this.rotation = -Math.round(this.angle * 180 / Math.PI)
         // this.domElement.style.transform = "rotate(" + angle + "deg)";
         this.domElement.style.transform = "rotate(" + this.rotation + "deg)";
-
         handleScreenEdge(this)
+
+
 
     }
     destroy() {
@@ -163,7 +167,14 @@ class UFO extends Item {
 
     }
 
-    destroyAndCreateDummy() {
+    destroyAndCreateDummy(sound = "impact") {
+        let audio = new Audio('../assets/sounds/impact.mp3');
+        if (sound === "explosion") {
+            audio = new Audio('../assets/sounds/explosion.mp3');
+        }
+
+
+        audio.play();
         const { x, y, r } = this.getCurrentPosition()
 
         this.destroy()
@@ -180,18 +191,21 @@ class UFO extends Item {
 }
 
 const UFOarr = []
-
-let counterInterval = 1
-let intSpeed = 2000
-setInterval(() => {
+const createUFO = () => {
     const { x, y } = getUFOstartPosition();
-    if (counterInterval % 5 === 0) {
-        intSpeed = intSpeed > 1000 ? intSpeed - 100 : intSpeed
-    }
     let newUFO = new UFO(45, 45, x, y, "ufo", 10);
     UFOarr.push(newUFO);
     newUFO.move();
+}
+let counterInterval = 1
+let intSpeed = 2000
+setInterval(() => {
 
+    if (counterInterval % 5 === 0) {
+        intSpeed = intSpeed > 1000 ? intSpeed - 100 : intSpeed
+    }
+
+    createUFO()
     counterInterval++
     console.log("intSpeed", intSpeed);
 
@@ -200,7 +214,7 @@ setInterval(() => {
 
 
 const getUFOstartPosition = () => {
-    const randomSide = Math.floor(Math.random() * 2) == 1 ? 0 : 760;
+    const randomSide = Math.floor(Math.random() * 2) == 1 ? 0 : window.innerWidth * 0.8;
     const isXRandomSide = Math.floor(Math.random() * 2) === 1 ? true : false;
     const x = isXRandomSide ? randomSide : Math.floor(Math.random() * 1400);
     const y = isXRandomSide ? Math.floor(Math.random() * 760) : 750;
@@ -209,8 +223,10 @@ const getUFOstartPosition = () => {
 
 
 const handleScreenEdge = (element) => {
-    if (element.x > 1600 || element.x < -1 || element.y > 800 || element.y < 30) {
+    if (element.x > window.innerWidth - 55 || element.x < -1 || element.y > window.innerHeight || element.y < 35) {
         element.destroy()
+        return "destroyed"
+
     }
 }
 
@@ -276,11 +292,11 @@ class Bullet {
                 UFOarr.forEach((UFOinstance) => {
                     const isCollision = detectCollision(this, UFOinstance)
                     if (isCollision) {
+                        player.scorePoints()
                         // UFOinstance.classList.add = "destroyed"
+                        UFOinstance.destroyAndCreateDummy("explosion")
                         this.destroy()
-                        setTimeout(() => {
-                            UFOinstance.domElement.remove()
-                        }, 100)
+
                     }
                 })
 
