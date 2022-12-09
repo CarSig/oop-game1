@@ -1,12 +1,5 @@
 const bulletsArr = [];
-
-
-//    console.log("screenwidth: " + window.innerWidth, "screenheight: " + window.innerHeight)
-// detect window.innerWidth change
-
 window.addEventListener("resize", function () {
-    console.log("screenwidth: " + window.innerWidth, "screenheight: " + window.innerHeight)
-
     const boardElm = document.getElementById("board");
     boardElm.style.width = window.innerWidth + "px";
     boardElm.style.height = window.innerHeight + "px";
@@ -52,7 +45,7 @@ class Player {
         // this.parentTank = document.createElement('div');
 
         this.img = document.createElement('img');
-        this.img.src = "./css/tank_body1.png";
+        this.img.src = "./assets/img/tank_body1.png";
         this.img.className = "imgTank"
 
         // it is necessary to create a parent div to make sure the turret is always at the right place regardless of screen size
@@ -74,7 +67,7 @@ class Player {
         this.turret = document.createElement('img');
         this.turret.id = "imgTurret";
 
-        this.turret.src = "./css/tank_turret.png";
+        this.turret.src = "./assets/img/tank_turret.png";
         this.parent.appendChild(this.turret);
 
         const boardElm = document.getElementById("board");

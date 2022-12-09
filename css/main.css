@@ -38,7 +38,7 @@ h1 {
   /* max-width: 1440px; */
   position: relative;
   /* background-color: rgb(73, 43, 31); */
-  background-image: url("./terrain_rocks.jpg");
+  background-image: url("../assets/img/terrain_rocks.jpg");
   background-size: repeat;
 }
 
@@ -63,7 +63,7 @@ h1 {
 .building {
   position: absolute;
   /* outline: 1px solid green; */
-  background-image: url("./building.png");
+  background-image: url("../assets/img/building.png");
   background-size: cover;
   outline: 2px solid green;
   -webkit-filter: drop-shadow(15px 15px 5px #22222298);
@@ -87,7 +87,7 @@ h1 {
 .ufo {
   position: absolute;
 
-  background-image: url("./ufo2.png");
+  background-image: url("../assets/img/ufo2.png");
   background-size: cover;
   -webkit-filter: drop-shadow(15px 15px 5px #d0db31d0);
   filter: drop-shadow(15px 15px 5px #d0db31d0);

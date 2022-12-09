@@ -80,12 +80,17 @@ class UFO extends Item {
         this.rotation = 0
 
     }
-    moveToCenterOfBoard() {
+    attractToCenter() {
+        //TODO: refactor to relative units
         setInterval(() => {
-            this.x = this.x < 400 ? this.x + 1 : this.x - 1
-            this.y = this.y < 400 ? this.y + 1 : this.y - 1
-            this.domElement.style.left = this.x + "px";
-            this.domElement.style.bottom = this.y + "px";
+            if ((this.x < 50 && this.x > 750) || (this.y < 50 && this.y > 750)) {
+                this.x = this.x < 400 ? this.x + 1 : this.x - 1
+                this.y = this.y < 400 ? this.y + 1 : this.y - 1
+                this.domElement.style.left = this.x + "px";
+                this.domElement.style.bottom = this.y + "px";
+            }
+
+
         }, 50)
     }
 
@@ -93,19 +98,19 @@ class UFO extends Item {
 
     move() {
         setInterval(() => {
-            if ((this.x < 50 && this.x > 750) || (this.y < 50 && this.y > 750)) {
-                this.moveToCenterOfBoard()
-            }
+            this.attractToCenter()
             this.handleRotation()
             const random = Math.floor(Math.random() * 100)
             this.moveAngle = random < 99 ? this.moveAngle : -this.moveAngle
             this.domElement.style.left = this.x + "px";
             this.domElement.style.bottom = this.y + "px";
 
+            //handle player collision 
             if (detectCollision(this, player)) {
                 this.destroyAndCreateDummy()
                 player.takeDamage()
             }
+            //handle building collision
             obstacles.forEach((obstacleInstance) => {
                 if (detectCollision(this, obstacleInstance)) {
                     this.destroyAndCreateDummy()
@@ -255,7 +260,7 @@ class Bullet {
     }
 
     createDomElement() {
-        // create bullet
+
         this.domElement = document.createElement('div');
         this.domElement.className = "bullet";
         this.domElement.style.left = this.x + "px";
