@@ -6,7 +6,7 @@ document.addEventListener('keyup', function (event) {
         case 'ArrowUp':
             player.arrow.up = false;
             player.acceleration = 0;
-            player.decelerate();
+
             break;
         case 'ArrowDown':
             player.arrow.down = false;

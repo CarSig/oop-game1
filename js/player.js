@@ -83,13 +83,8 @@ class Player {
     }
     accelerate() {
         if (this.arrow.up) {
-            this.acceleration = (this.arrow.left || this.arrow.right) ? this.acceleration += 0.15 : this.acceleration += 0.4
-        }
-
-    }
-    decelerate() {
-        if (this.arrow.down) {
-            this.acceleration = (this.arrow.left || this.arrow.right) ? this.acceleration -= 0.15 : this.acceleration -= 0.4
+            const isTurning = this.arrow.left || this.arrow.right
+            this.acceleration = isTurning ? this.acceleration + 0.15 : this.acceleration + 0.4
         }
     }
 
