@@ -6,7 +6,7 @@ window.addEventListener("resize", function () {
 })
 
 
-// ! check problem with shooting, player now moves when shooting, and bullets slow down sometimes
+
 
 class Player {
     constructor() {
@@ -116,7 +116,6 @@ class Player {
     };
 
     rotateCannon() {
-
         this.cannonRotation = this.arrow.canonLeft ? this.cannonRotation + 4 : this.arrow.canonRight ? this.cannonRotation - 4 : this.cannonRotation
         this.turret.style.transform = "rotate(" + this.cannonRotation + "deg)"
     }
@@ -142,18 +141,8 @@ class Player {
     }
 
     stopMovingOnScreenEdge() {
-        if (this.x < 0) {
-            this.x = 0
-        }
-        if (this.x > window.innerWidth - 2 * this.height) {
-            this.x = window.innerWidth - 2 * this.height
-        }
-        if (this.y < 42) {
-            this.y = 42
-        }
-        if (this.y > window.innerHeight - this.height) {
-            this.y = window.innerHeight - this.height
-        }
+        this.x = this.x < 0 ? 0 : this.x > window.innerWidth - 2 * this.height ? window.innerWidth - 2 * this.height : this.x
+        this.y = this.y < 42 ? 42 : this.y > window.innerHeight - this.height ? window.innerHeight - this.height : this.y
     }
     scorePoints() {
         this.score = this.score + 10
