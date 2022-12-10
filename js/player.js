@@ -34,9 +34,7 @@ class Player {
             spaceBar: false
         };
         this.cannonRotation = 0;
-
         this.health = 4
-
         this.shootingEnabled = true;
     }
 
@@ -123,7 +121,6 @@ class Player {
         // TODO : fix the angle of the bullet
         const angle = Math.abs(this.rotation % 360)
         const isShooting = this.arrow.spaceBar && this.shootingEnabled
-
         if (isShooting) {
             const bullet = new Bullet(this.x, this.y, 2, 100, this.cannonRotation, this.angle, this.moveAngle, this.rotation)
             bulletsArr.push(bullet)
@@ -132,8 +129,6 @@ class Player {
                 this.shootingEnabled = true
             }, 500)
         }
-
-
     }
     takeDamage() {
         this.health = this.health > 0 ? this.health - 1 : window.location.href = './game-over.html'
@@ -151,11 +146,9 @@ class Player {
             window.location.href = './victory.html';
         }
     }
-
     createUI() {
         this.scoreElm = document.getElementById("score");
         this.scoreElm.innerHTML = this.score
-
     }
 }
 
