@@ -46,10 +46,11 @@ document.addEventListener('keydown', function (event) {
         case "ArrowRight": player.arrow.right = true
 
             break;
-        case "w": player.cannonRotation += 4
+        case "w": player.arrow.canonLeft = true;
 
             break;
-        case "q": player.cannonRotation -= 4
+        case "q": player.arrow.canonRight = true;
+
 
             break;
         case " ":

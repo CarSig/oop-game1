@@ -157,12 +157,16 @@ class Player {
     };
 
     rotateCannon() {
+        if (this.arrow.canonLeft) {
+            this.cannonRotation += 4
+        }
+        if (this.arrow.canonRight) {
+            this.cannonRotation -= 4
+        }
         this.turret.style.transform = "rotate(" + this.cannonRotation + "deg)"
-
-
-
     }
     shot() {
+        // TODO : fix the angle of the bullet
         const angle = Math.abs(this.rotation % 360)
 
         if (this.arrow.spaceBar && this.shootingEnabled) {
