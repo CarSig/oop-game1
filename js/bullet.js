@@ -1,9 +1,13 @@
+
 class Bullet extends MovingItem {
-    constructor(x, y, speed = 3, range = 100, cannonRotation, angle, moveAngle, rotation) {
-        super(4, 4, x, y, "bullet", moveAngle, range, angle, speed, rotation)
+
+    constructor(width, height, x, y, type, moveAngle, angle, speed, rotation, cannonRotation) {
+        super(width, height, x, y, type, moveAngle, angle, speed, rotation)
         this.x = x + 27;
         this.y = y + 55;
         this.cannonRotation = cannonRotation;
+        this.speed = 2
+        this.range = 100
         this.angle = angle;
         this.rotation = rotation
         this.moveAngle = moveAngle;
@@ -12,6 +16,7 @@ class Bullet extends MovingItem {
         this.domElement = null;
         this.createDomElement();
         this.moveStart();
+
     }
 
     checkBuildingCollision() {
@@ -36,6 +41,7 @@ class Bullet extends MovingItem {
         })
     }
     moveStart() {
+        console.log(this)
         const move = () => {
             this.x += Math.sin(this.bulletDirection) //* this.speed;
             this.y += Math.cos(this.bulletDirection) ///* this.speed;

@@ -1,3 +1,4 @@
+
 class UFO extends MovingItem {
     constructor(x, y, width = 45, height = 45, type = "ufo", moveAngle = 1, angle = 0, speed = 3, rotation = 0) {
         super(width, height, x, y, type, moveAngle, angle, speed, rotation)
@@ -83,11 +84,13 @@ class UFO extends MovingItem {
     }
 
     destroyAndCreateDummy(sound = "impact") {
-        let audio = new Audio('./assets/sounds/impact.mp3');
+
         if (sound === "explosion") {
-            audio = new Audio('./assets/sounds/explosion.mp3');
+            explosion.play()
         }
-        audio.play();
+        if (sound === "impact") {
+            impact.play()
+        }
         const { x, y, r } = this.getCurrentPosition()
         this.destroy()
         this.createDummy(+x, +y, +r)
@@ -99,3 +102,4 @@ class UFO extends MovingItem {
     }
 
 }
+;

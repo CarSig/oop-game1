@@ -2,6 +2,8 @@ const buildings = [new Building(150, 150, 420, 270), new Building(80, 80, 950, 3
 const player = new Player();
 const UFOarr = []
 const bulletsArr = [];
+const audioShot = new Audio('./assets/sounds/tank-shot.mp3');
+
 
 const isGameOver = () => {
     const buildingsAlive = buildings.some(building => building.health > 0)
@@ -10,8 +12,6 @@ const isGameOver = () => {
     }
 }
 
-const soundtrack = new Audio("./assets/sounds/soundtrack.ogg")
-soundtrack.play()
 
 const detectCollision = (actor, target) => {
     const collision = actor.x < target.x + target.width &&
@@ -88,7 +88,7 @@ document.addEventListener('keydown', function (event) {
     player.moveAngle = 0;
     player.speed = 0;
 
-    const audioShot = new Audio('./assets/sounds/tank-shot.mp3');
+
 
     switch (event.key) {
         case "ArrowUp": player.arrow.up = true;
@@ -115,13 +115,34 @@ document.addEventListener('keydown', function (event) {
     player.shot()
 
 });
-window.addEventListener("resize", function () {
+document.addEventListener("resize", function () {
     const boardElm = document.getElementById("board");
     boardElm.style.width = window.innerWidth + "px";
     boardElm.style.height = window.innerHeight + "px";
 })
 
+//SOUNDS
+const impact = new Audio('./assets/sounds/impact.mp3');
+const explosion = new Audio('./assets/sounds/explosion.mp3')
+const soundtrack = new Audio("./assets/sounds/soundtrack.ogg")
+soundtrack.play()
+soundtrack.volume = 0.5
 
 
+const sliderMusic = document.getElementById("music-slider")
+const sliderGameSounds = document.getElementById("game-sounds-slider")
 
 
+sliderMusic.addEventListener("input", function () {
+    soundtrack.volume = sliderMusic.value / 100
+})
+sliderGameSounds.addEventListener("input", function () {
+    explosion.volume = sliderGameSounds.value / 100;
+    impact.volume = sliderGameSounds.value / 100
+    audioShot.volume = sliderGameSounds.value / 100
+})
+
+// document.onload = () => {
+//     explosion.volume, impact.volume, audioShot.volume, soundtrack.volume = 1
+
+// }

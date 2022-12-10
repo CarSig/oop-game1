@@ -1,3 +1,7 @@
+
+
+
+
 class Player extends MovingItem {
     constructor(width, height, x, y, type, moveAngle, angle, speed, rotation) {
         super(width = 42, height = 75, x = 750, y = 200, type = "player", moveAngle = 0, angle = 0, speed = 0, rotation = 0)
@@ -6,7 +10,7 @@ class Player extends MovingItem {
         this.turret = null;
         this.scoreElm = null;
         this.acceleration = 0
-        this.speedLimit = -12;
+        this.speedLimit = -9;
         this.arrow = {
             up: false,
             down: false,
@@ -57,7 +61,8 @@ class Player extends MovingItem {
 
     handleSpeed() {
         const isTurning = this.arrow.left || this.arrow.right
-        this.acceleration = this.arrow.up ? isTurning ? this.acceleration + 0.15 : this.acceleration + 0.4 : 0
+        this.acceleration = this.arrow.up ? isTurning ? this.acceleration + 0.1 : this.acceleration + 0.25 : 0
+        this.acceleration = this.acceleration > 3 && isTurning ? 1.5 : this.acceleration
         const speed = -7 - this.acceleration
         this.speed = this.arrow.down ? 4 : speed < this.speedLimit ? this.speedLimit : speed
     }
@@ -79,7 +84,7 @@ class Player extends MovingItem {
             this.rotation = -Math.round(this.angle * 180 / Math.PI)
             this.domElement.style.transform = "rotate(" + this.rotation + "deg)";
             const collidedObs = buildings.filter(obstacle => detectCollision(this, obstacle))
-            this.speedLimit = collidedObs.length > 0 ? 0 : -13
+            this.speedLimit = collidedObs.length > 0 ? 0 : -9
             this.stopMovingOnScreenEdge()
         }
     };
@@ -87,14 +92,17 @@ class Player extends MovingItem {
     rotateCannon() {
         this.cannonRotation = this.arrow.canonLeft ? this.cannonRotation + 4 : this.arrow.canonRight ? this.cannonRotation - 4 : this.cannonRotation
         this.turret.style.transform = "rotate(" + this.cannonRotation + "deg)"
+
     }
 
     shot() {
         // TODO : fix the angle of the bullet
         //const angle = Math.abs(this.rotation % 360)
+
         const isShooting = this.arrow.spaceBar && this.shootingEnabled
         if (isShooting) {
-            const bullet = new Bullet(this.x, this.y, 2, 100, this.cannonRotation, this.angle, this.moveAngle, this.rotation)
+            const bullet = new Bullet(4, 4, this.x, this.y, "bullet", this.moveAngle, this.angle, 2, this.rotation, this.cannonRotation)
+
             bulletsArr.push(bullet)
             this.shootingEnabled = false
             setTimeout(() => {
