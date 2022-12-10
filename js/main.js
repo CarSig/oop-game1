@@ -3,8 +3,6 @@ const player = new Player();
 const UFOarr = []
 const bulletsArr = [];
 
-
-
 const isGameOver = () => {
     const buildingsAlive = buildings.some(building => building.health > 0)
     if (!buildingsAlive) {
@@ -24,8 +22,6 @@ const detectCollision = (actor, target) => {
     return collision
 }
 
-
-
 const createUFO = () => {
     const { x, y } = getUFOstartPosition();
     let newUFO = new UFO(x, y);
@@ -40,8 +36,6 @@ setInterval(() => {
     }
     createUFO()
     counterInterval++
-
-
 }, intSpeed);
 
 
@@ -58,7 +52,6 @@ const handleScreenEdge = (element) => {
     if (element.x > window.innerWidth - 55 || element.x < -1 || element.y > window.innerHeight || element.y < 35) {
         element.destroy()
         return "destroyed"
-
     }
 }
 
@@ -71,7 +64,6 @@ document.addEventListener('keyup', function (event) {
         case 'ArrowUp':
             player.arrow.up = false;
             player.acceleration = 0;
-
             break;
         case 'ArrowDown':
             player.arrow.down = false;
@@ -92,8 +84,6 @@ document.addEventListener('keyup', function (event) {
             player.arrow.spaceBar = false
     }
 });
-
-
 document.addEventListener('keydown', function (event) {
     player.moveAngle = 0;
     player.speed = 0;
@@ -106,17 +96,12 @@ document.addEventListener('keydown', function (event) {
         case "ArrowDown": player.arrow.down = true;
             break;
         case "ArrowLeft": player.arrow.left = true
-
             break;
         case "ArrowRight": player.arrow.right = true
-
             break;
         case "w": player.arrow.canonLeft = true;
-
             break;
         case "q": player.arrow.canonRight = true;
-
-
             break;
         case " ":
             if (player.shootingEnabled) { audioShot.play(); }
