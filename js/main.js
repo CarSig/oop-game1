@@ -1,5 +1,9 @@
 const buildings = [new Building(150, 150, 420, 270), new Building(80, 80, 950, 355), new Building(80, 80, 385, 550)]
 const player = new Player();
+const UFOarr = []
+const bulletsArr = [];
+
+
 
 const isGameOver = () => {
     const buildingsAlive = buildings.some(building => building.health > 0)
@@ -18,6 +22,44 @@ const detectCollision = (actor, target) => {
         actor.height + actor.y > target.y
     isGameOver()
     return collision
+}
+
+
+
+const createUFO = () => {
+    const { x, y } = getUFOstartPosition();
+    let newUFO = new UFO(x, y);
+    UFOarr.push(newUFO);
+    newUFO.move();
+}
+let counterInterval = 1
+let intSpeed = 2000
+setInterval(() => {
+    if (counterInterval % 5 === 0) {
+        intSpeed = intSpeed > 1000 ? intSpeed - 100 : intSpeed
+    }
+    createUFO()
+    counterInterval++
+
+
+}, intSpeed);
+
+
+
+const getUFOstartPosition = () => {
+    const randomSide = Math.floor(Math.random() * 2) == 1 ? 0 : window.innerWidth * 0.8;
+    const isXRandomSide = Math.floor(Math.random() * 2) === 1 ? true : false;
+    const x = isXRandomSide ? randomSide : Math.floor(Math.random() * 1400);
+    const y = isXRandomSide ? Math.floor(Math.random() * 760) : 750;
+    return { x, y }
+}
+
+const handleScreenEdge = (element) => {
+    if (element.x > window.innerWidth - 55 || element.x < -1 || element.y > window.innerHeight || element.y < 35) {
+        element.destroy()
+        return "destroyed"
+
+    }
 }
 
 
@@ -88,6 +130,11 @@ document.addEventListener('keydown', function (event) {
     player.shot()
 
 });
+window.addEventListener("resize", function () {
+    const boardElm = document.getElementById("board");
+    boardElm.style.width = window.innerWidth + "px";
+    boardElm.style.height = window.innerHeight + "px";
+})
 
 
 

@@ -1,26 +1,12 @@
-const bulletsArr = [];
-window.addEventListener("resize", function () {
-    const boardElm = document.getElementById("board");
-    boardElm.style.width = window.innerWidth + "px";
-    boardElm.style.height = window.innerHeight + "px";
-})
-
-class Player {
-    constructor() {
-        this.width = 42;
-        this.height = 75;
-        this.x = 750;
-        this.y = 200;
+class Player extends MovingItem {
+    constructor(width, height, x, y, type, moveAngle, angle, speed, rotation) {
+        super(width = 42, height = 75, x = 750, y = 200, type = "player", moveAngle = 0, angle = 0, speed = 0, rotation = 0)
         this.score = 0;
         this.domElement = null;
         this.turret = null;
         this.scoreElm = null;
-        this.speed = 0;
-        this.angle = 0;
-        this.moveAngle = 0;
         this.acceleration = 0
         this.speedLimit = -12;
-        this.createDomElement();
         this.arrow = {
             up: false,
             down: false,
@@ -33,6 +19,7 @@ class Player {
         this.cannonRotation = 0;
         this.health = 4
         this.shootingEnabled = true;
+        this.createDOM();
     }
 
     createTankDOM() {
@@ -62,14 +49,8 @@ class Player {
         boardElm.appendChild(this.scoreElm);
     }
 
-    createDomElement() {
-        this.domElement = document.createElement('div');
-        this.domElement.id = "player";
-        this.domElement.style.width = this.width + "px";
-        this.domElement.style.height = this.height + "px";
-        // this.domElement.style.transformOrigin = "50% 80%";
-        this.domElement.style.left = this.x + "px";
-        this.domElement.style.bottom = this.y + "px";
+    createDOM() {
+        this.createDomElement()
         this.createTankDOM();
         this.createBoardDOM();
     }

@@ -42,7 +42,8 @@ h1 {
   background-size: repeat;
 }
 
-#player {
+#player,
+.player {
   position: absolute;
 
   /* transform: rotate(350deg); */
