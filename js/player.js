@@ -5,9 +5,6 @@ window.addEventListener("resize", function () {
     boardElm.style.height = window.innerHeight + "px";
 })
 
-
-
-
 class Player {
     constructor() {
         this.width = 42;
@@ -38,8 +35,6 @@ class Player {
         this.shootingEnabled = true;
     }
 
-
-
     createTankDOM() {
         this.parent = document.createElement('div');
         this.parent.id = "parentTank";
@@ -67,7 +62,6 @@ class Player {
         this.scoreElm.innerHTML = "score: " + this.score;
         boardElm.appendChild(this.scoreElm);
     }
-
 
     createDomElement() {
         this.domElement = document.createElement('div');
@@ -144,10 +138,7 @@ class Player {
             window.location.href = './victory.html';
         }
     }
-    createUI() {
-        this.scoreElm = document.getElementById("score");
-        this.scoreElm.innerHTML = this.score
-    }
+
 }
 
 
