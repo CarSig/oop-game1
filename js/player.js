@@ -81,14 +81,11 @@ class Player {
 
 
     }
-    accelerate() {
-        if (this.arrow.up) {
-            const isTurning = this.arrow.left || this.arrow.right
-            this.acceleration = isTurning ? this.acceleration + 0.15 : this.acceleration + 0.4
-        }
-    }
 
     handleSpeed() {
+        const isTurning = this.arrow.left || this.arrow.right
+        this.acceleration = this.arrow.up ? isTurning ? this.acceleration + 0.15 : this.acceleration + 0.4 : 0
+
         const speed = -7 - this.acceleration
         this.speed = this.arrow.down ? 4 : speed < this.speedLimit ? this.speedLimit : speed
     }
@@ -99,31 +96,19 @@ class Player {
         this.angle += angle;
         this.x += (this.speed) * Math.sin(this.angle);
         this.y -= (this.speed) * Math.cos(this.angle);
-        this.rotation = -Math.round(this.angle * 180 / Math.PI)
-        this.domElement.style.transform = "rotate(" + this.rotation + "deg)";
+
     }
 
     move() {
-        this.accelerate()
+
         this.handleSpeed();
         this.handleRotation();
         this.domElement.style.left = this.x + "px";
         this.domElement.style.bottom = this.y + "px";
+        this.rotation = -Math.round(this.angle * 180 / Math.PI)
+        this.domElement.style.transform = "rotate(" + this.rotation + "deg)";
         const collidedObs = buildings.filter(obstacle => detectCollision(this, obstacle))
-        if (!this.hasCollided) {
-            this.speedLimit = -13
-        }
-
-        if (collidedObs.length > 0) {
-            this.speedLimit = 0
-            this.hasCollided = true
-
-        }
-        else {
-            this.speedLimit = -10
-            this.hasCollided = false
-        }
-
+        this.speedLimit = collidedObs.length > 0 ? 0 : -13
         this.stopMovingOnScreenEdge()
 
     };
