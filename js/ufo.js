@@ -45,44 +45,7 @@ class UFO extends MovingItem {
 
 
     }
-    destroy() {
-        this.domElement.classList.add("destroyed")
-        this.x = -300
-        this.y = -300
-        this.speed = 0
-        this.domElement.remove()
 
-        //? UFOarr.splice(UFOarr.indexOf(this), 1)
-
-        //* before writing this code, I had a bug where the bullets and UFOs would start moving slower and slower.
-        // I found out that the UFOs were not being removed from the UFOarr array, so I wrote this code to remove them.
-        // However, when I did this, there was no collision between the UFOs and bullets.Also, all elements were removed from Array
-        // collision with buildings and player still worked fine.
-
-        // When I commented out the code above, everything worked fine again. I'm not sure why this is happening.
-        // UFO s are not removed from the UFOarr array,but during the game maximum number in array is approx 50
-
-
-        //*  UFO collision with bullets and player is handled from UFO class, and with bullets from bullet class
-        // However, code seems fine there, copied bellow for reference
-        //checkUFOCollision() {
-        // UFOarr.forEach((UFOinstance) => {
-        //     const isCollision = detectCollision(this,         UFOinstance)
-        //     if (isCollision) {
-        //         player.scorePoints()
-        //         UFOinstance.destroyAndCreateDummy("explosion")
-        //         this.destroy()
-        //     }
-        // }) 
-
-        // the only difference us that destroyAndCreate dummy with bullets is called with "explosion" argument, and others are without, but there is default value for argument in the function("impact")") 
-
-        // I'm not sure what is causing this bug, but I'm sure it's something to do with the way I'm removing the UFOs from the array.
-
-        // it is also strange that when i remove with splice, all UFOs are removed
-
-
-    }
 
     createDummy(x, y, r) {
         this.dummy = document.createElement('div');

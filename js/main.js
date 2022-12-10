@@ -82,6 +82,9 @@ document.addEventListener('keyup', function (event) {
             break;
         case " ":
             player.arrow.spaceBar = false
+            break
+        case "a":
+            player.arrow.machineGun = false
     }
 });
 document.addEventListener('keydown', function (event) {
@@ -107,12 +110,15 @@ document.addEventListener('keydown', function (event) {
             if (player.shootingEnabled) { audioShot.play(); }
             player.arrow.spaceBar = true
             break
-
+        case "a":
+            player.arrow.machineGun = true
+            break
     }
 
     player.move()
     player.rotateCannon()
     player.shot()
+    player.machineGun()
 
 });
 document.addEventListener("resize", function () {

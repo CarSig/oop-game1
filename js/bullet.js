@@ -1,13 +1,13 @@
 
 class Bullet extends MovingItem {
 
-    constructor(width, height, x, y, type, moveAngle, angle, speed, rotation, cannonRotation) {
+    constructor(width, height, x, y, type, moveAngle, angle, speed, rotation, cannonRotation, range) {
         super(width, height, x, y, type, moveAngle, angle, speed, rotation)
         this.x = x + 27;
         this.y = y + 55;
         this.cannonRotation = cannonRotation;
         this.speed = 2
-        this.range = 100
+        this.range = range
         this.angle = angle;
         this.rotation = rotation
         this.moveAngle = moveAngle;

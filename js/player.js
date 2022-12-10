@@ -18,7 +18,8 @@ class Player extends MovingItem {
             right: false,
             canonLeft: false,
             canonRight: false,
-            spaceBar: false
+            spaceBar: false,
+            machineGun: false
         };
         this.cannonRotation = 0;
         this.health = 4
@@ -112,6 +113,15 @@ class Player extends MovingItem {
         }
     }
 
+    machineGun() {
+        const isShooting = this.arrow.machineGun
+        if (isShooting) {
+            const bullet = new Bullet(1, 3, this.x, this.y, "bullet", this.moveAngle, this.angle, 2, this.rotation, this.cannonRotation, 10)
+            // second blullet 10 px away from the first one
+            const bullet2 = new Bullet(1, 3, this.x, this.y, "bullet", this.moveAngle, this.angle, 2, this.rotation, this.cannonRotation, 20)
+        }
+    }
+
     takeDamage() {
         this.health = this.health > 0 ? this.health - 1 : window.location.href = './game-over.html'
         this.img.className = `imgTank hp${this.health}`
@@ -142,7 +152,7 @@ class Player extends MovingItem {
     }
 
     scorePoints() {
-        this.score = this.score + 10
+        this.score = this.score + 1
         this.scoreElm.innerHTML = "score: " + this.score
         if (this.score === 100) {
             window.location.href = './victory.html';

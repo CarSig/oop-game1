@@ -32,10 +32,12 @@ class MovingItem extends Item {
         this.rotation = rotation
     }
     destroy() {
+        const removeLocation = this instanceof Bullet ? -100 : this instanceof UFO ? -200 : -300
+
         this.domElement.classList.add("destroyed")
         this.domElement.remove();
-        this.x = -200
-        this.y = -200
+        this.x = removeLocation
+        this.y = removeLocation
         this.speed = 0
     }
     handleScreenEdge() {
