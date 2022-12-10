@@ -23,7 +23,7 @@ class Bullet extends MovingItem {
         buildings.forEach((obstacleInstance) => {
             const isCollision = detectCollision(this, obstacleInstance)
             if (isCollision) {
-                // this.removeBullet(bulletInterval)wwwwwwwwww
+                // this.removeBullet(bulletInterval)
                 // clearInterval(bulletInterval)
                 this.destroy()
             }
@@ -42,6 +42,8 @@ class Bullet extends MovingItem {
     }
     moveStart() {
         console.log(this)
+        console.log(bulletsArr);
+        console.log(UFOarr);
         const move = () => {
             this.x += Math.sin(this.bulletDirection) //* this.speed;
             this.y += Math.cos(this.bulletDirection) ///* this.speed;
@@ -51,6 +53,8 @@ class Bullet extends MovingItem {
             setTimeout(() => {
                 clearInterval(bulletInterval)
                 this.domElement.remove()
+                bulletsArr.splice(bulletsArr.indexOf(this), 1)
+
             }, 3000)
         }
 
@@ -58,6 +62,6 @@ class Bullet extends MovingItem {
             move()
             this.checkUFOCollision()
             this.checkBuildingCollision()
-        }, 0)
+        }, 1)
     }
 }
