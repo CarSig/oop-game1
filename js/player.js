@@ -5,6 +5,9 @@ window.addEventListener("resize", function () {
     boardElm.style.height = window.innerHeight + "px";
 })
 
+
+// ! check problem with shooting, player now moves when shooting, and bullets slow down sometimes
+
 class Player {
     constructor() {
         this.width = 42;
@@ -31,7 +34,7 @@ class Player {
             spaceBar: false
         };
         this.cannonRotation = 0;
-        this.hasCollided = false;
+
         this.health = 4
 
         this.shootingEnabled = true;
@@ -85,7 +88,6 @@ class Player {
     handleSpeed() {
         const isTurning = this.arrow.left || this.arrow.right
         this.acceleration = this.arrow.up ? isTurning ? this.acceleration + 0.15 : this.acceleration + 0.4 : 0
-
         const speed = -7 - this.acceleration
         this.speed = this.arrow.down ? 4 : speed < this.speedLimit ? this.speedLimit : speed
     }
@@ -100,37 +102,32 @@ class Player {
     }
 
     move() {
-
-        this.handleSpeed();
-        this.handleRotation();
-        this.domElement.style.left = this.x + "px";
-        this.domElement.style.bottom = this.y + "px";
-        this.rotation = -Math.round(this.angle * 180 / Math.PI)
-        this.domElement.style.transform = "rotate(" + this.rotation + "deg)";
-        const collidedObs = buildings.filter(obstacle => detectCollision(this, obstacle))
-        this.speedLimit = collidedObs.length > 0 ? 0 : -13
-        this.stopMovingOnScreenEdge()
-
+        if (this.arrow.up || this.arrow.down || this.arrow.left || this.arrow.right) {
+            this.handleSpeed();
+            this.handleRotation();
+            this.domElement.style.left = this.x + "px";
+            this.domElement.style.bottom = this.y + "px";
+            this.rotation = -Math.round(this.angle * 180 / Math.PI)
+            this.domElement.style.transform = "rotate(" + this.rotation + "deg)";
+            const collidedObs = buildings.filter(obstacle => detectCollision(this, obstacle))
+            this.speedLimit = collidedObs.length > 0 ? 0 : -13
+            this.stopMovingOnScreenEdge()
+        }
     };
 
     rotateCannon() {
-        if (this.arrow.canonLeft) {
-            this.cannonRotation += 4
-        }
-        if (this.arrow.canonRight) {
-            this.cannonRotation -= 4
-        }
+
+        this.cannonRotation = this.arrow.canonLeft ? this.cannonRotation + 4 : this.arrow.canonRight ? this.cannonRotation - 4 : this.cannonRotation
         this.turret.style.transform = "rotate(" + this.cannonRotation + "deg)"
     }
     shot() {
         // TODO : fix the angle of the bullet
         const angle = Math.abs(this.rotation % 360)
+        const isShooting = this.arrow.spaceBar && this.shootingEnabled
 
-        if (this.arrow.spaceBar && this.shootingEnabled) {
-
+        if (isShooting) {
             const bullet = new Bullet(this.x, this.y, 2, 100, this.cannonRotation, this.angle, this.moveAngle, this.rotation)
             bulletsArr.push(bullet)
-
             this.shootingEnabled = false
             setTimeout(() => {
                 this.shootingEnabled = true
