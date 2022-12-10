@@ -106,6 +106,9 @@ class Player extends MovingItem {
     takeDamage() {
         this.health = this.health > 0 ? this.health - 1 : window.location.href = './game-over.html'
         this.img.className = `imgTank hp${this.health}`
+        if (this.health === 0) {
+            isGameOver()
+        }
     }
 
     stopMovingOnScreenEdge() {

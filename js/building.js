@@ -10,6 +10,7 @@ class Building extends Item {
         if (this.health < 0) {
             this.x = -100
             this.y = -100
+            isGameOver()
         }
     }
 }

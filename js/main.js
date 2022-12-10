@@ -18,7 +18,7 @@ const detectCollision = (actor, target) => {
         actor.x + actor.width > target.x &&
         actor.y < target.y + target.height &&
         actor.height + actor.y > target.y
-    isGameOver()
+    // isGameOver()
     return collision
 }
 
