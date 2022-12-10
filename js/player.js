@@ -38,49 +38,47 @@ class Player {
         this.shootingEnabled = true;
     }
 
-    createDomElement() {
 
-        this.domElement = document.createElement('div');
-        this.domElement.id = "player";
 
-        // this.parentTank = document.createElement('div');
-
-        this.img = document.createElement('img');
-        this.img.src = "./assets/img/tank_body1.png";
-        this.img.className = "imgTank"
-
-        // it is necessary to create a parent div to make sure the turret is always at the right place regardless of screen size
+    createTankDOM() {
         this.parent = document.createElement('div');
         this.parent.id = "parentTank";
         this.parent.style.width = this.width + "px";
         this.parent.style.height = this.height + "px";
         this.domElement.appendChild(this.parent);
+
+        this.img = document.createElement('img');
+        this.img.src = "./assets/img/tank_body1.png";
+        this.img.className = "imgTank"
+
         this.parent.appendChild(this.img);
+        this.turret = document.createElement('img');
+        this.turret.id = "imgTurret";
+        this.turret.src = "./assets/img/tank_turret.png";
+        this.parent.appendChild(this.turret);
+    }
+
+    createBoardDOM() {
+
+        const boardElm = document.getElementById("board");
+        boardElm.appendChild(this.domElement);
+        this.scoreElm = document.createElement('div');
+        this.scoreElm.id = "score";
+        this.scoreElm.innerHTML = "score: " + this.score;
+        boardElm.appendChild(this.scoreElm);
+    }
 
 
-
+    createDomElement() {
+        this.domElement = document.createElement('div');
+        this.domElement.id = "player";
         this.domElement.style.width = this.width + "px";
         this.domElement.style.height = this.height + "px";
         // this.domElement.style.transformOrigin = "50% 80%";
         this.domElement.style.left = this.x + "px";
         this.domElement.style.bottom = this.y + "px";
-
-        this.turret = document.createElement('img');
-        this.turret.id = "imgTurret";
-
-        this.turret.src = "./assets/img/tank_turret.png";
-        this.parent.appendChild(this.turret);
-
-        const boardElm = document.getElementById("board");
-
-        boardElm.appendChild(this.domElement);
-        this.scoreElm = document.createElement('div');
-        this.scoreElm.id = "score";
-        // this.scoreElm = document.getElementById("score");
-        this.scoreElm.innerHTML = "score: " + this.score;
-        boardElm.appendChild(this.scoreElm);
-
-
+        this.createTankDOM();
+        this.createBoardDOM();
     }
 
     handleSpeed() {
