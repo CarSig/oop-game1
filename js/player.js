@@ -76,6 +76,7 @@ class Player extends MovingItem {
     }
 
     move() {
+        this.speedLimit = -9
         if (this.arrow.up || this.arrow.down || this.arrow.left || this.arrow.right) {
             this.handleSpeed();
             this.handleRotation();
@@ -120,8 +121,24 @@ class Player extends MovingItem {
     }
 
     stopMovingOnScreenEdge() {
-        this.x = this.x < 0 ? 0 : this.x > window.innerWidth - 2 * this.height ? window.innerWidth - 2 * this.height : this.x
-        this.y = this.y < 42 ? 42 : this.y > window.innerHeight - this.height ? window.innerHeight - this.height : this.y
+
+        if (this.x < 0) {
+            this.x = 0
+            this.speedLimit = -3
+        } else if (this.x > window.innerWidth - 2 * this.height) {
+            this.x = window.innerWidth - 2 * this.height
+            this.speedLimit = -3
+        }
+        if (this.y < 42) {
+            this.y = 42
+            this.speedLimit = -3
+        } else if (this.y > window.innerHeight - this.height) {
+            this.y = window.innerHeight - this.height
+            this.speedLimit = -3
+        }
+
+
+
     }
 
     scorePoints() {
