@@ -89,29 +89,12 @@ class Player {
     }
 
     handleSpeed() {
-        if (this.arrow.up) {
-            const speed = -7 - this.acceleration
-
-            if (speed < this.speedLimit) {
-                this.speed = this.speedLimit
-            } else {
-                this.speed = speed
-            }
-        }
-
-        if (this.arrow.down) {
-
-            this.speed = 4
-        }
-
-
-
-        // this.speed = this.arrow.up ? (-0.25 - this.acceleration) : this.arrow.down ? 0.3 : 0
-        this.moveAngle = this.arrow.left ? 1 : this.arrow.right ? -1 : 0;
-
-
+        const speed = -7 - this.acceleration
+        this.speed = this.arrow.down ? 4 : speed < this.speedLimit ? this.speedLimit : speed
     }
+
     handleRotation() {
+        this.moveAngle = this.arrow.left ? 1 : this.arrow.right ? -1 : 0;
         const angle = (this.moveAngle * Math.PI) / 180;
         this.angle += angle;
 

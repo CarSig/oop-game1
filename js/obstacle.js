@@ -291,7 +291,7 @@ class Bullet {
         const bulletInterval = setInterval(() => {
             move()
 
-            obstacles.forEach((obstacleInstance) => {
+            buildings.forEach((obstacleInstance) => {
                 const isCollision = detectCollision(this, obstacleInstance)
                 if (isCollision) {
                     this.removeBullet(bulletInterval)
