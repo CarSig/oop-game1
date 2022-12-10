@@ -1,16 +1,12 @@
-
-class Bullet {
-    constructor(x, y, speed, range, cannonRotation, angle, moveAngle, rotation) {
+class Bullet extends MovingItem {
+    constructor(x, y, speed = 3, range = 100, cannonRotation, angle, moveAngle, rotation) {
+        super(4, 4, x, y, "bullet", moveAngle, range, angle, speed, rotation)
         this.x = x + 27;
         this.y = y + 55;
-        this.speed = speed;
-        this.range = range;
         this.cannonRotation = cannonRotation;
         this.angle = angle;
         this.moveAngle = moveAngle;
         this.rotation = rotation
-        this.height = 2;
-        this.width = 2;
         this.bothRotations = (this.rotation + this.cannonRotation) % 360
         this.bulletDirection = (this.bothRotations * Math.PI) / 180;
         this.domElement = null;
@@ -18,16 +14,6 @@ class Bullet {
         this.moveStart();
 
     }
-
-    createDomElement() {
-        this.domElement = document.createElement('div');
-        this.domElement.className = "bullet";
-        this.domElement.style.left = this.x + "px";
-        this.domElement.style.bottom = this.y + "px";
-        const boardElm = document.getElementById("board");
-        boardElm.appendChild(this.domElement);
-    }
-
     moveStart() {
         const move = () => {
             this.x += Math.sin(this.bulletDirection) //* this.speed;
@@ -64,11 +50,5 @@ class Bullet {
         })
     }
 
-    destroy() {
-        this.domElement.classList.add("destroyed")
-        this.domElement.remove();
-        this.x = -200
-        this.y = -200
-        this.speed = 0
-    }
+
 }
