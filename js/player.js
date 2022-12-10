@@ -183,38 +183,26 @@ class Player {
 
     }
     takeDamage() {
-        this.health = this.health - 1
-        this.img.className = this.health >= 0 ? `imgTank hp${this.health}` : "imgTank destroyed"
-        // alert(this.health)
-        console.log("damage taken")
-
-        if (this.health < 0) {
-
-            window.location.href = './game-over.html';
-        }
+        this.health = this.health > 0 ? this.health - 1 : window.location.href = './game-over.html'
+        this.img.className = `imgTank hp${this.health}`
     }
 
     stopMovingOnScreenEdge() {
         if (this.x < 0) {
             this.x = 0
-
         }
         if (this.x > window.innerWidth - 2 * this.height) {
             this.x = window.innerWidth - 2 * this.height
-
         }
         if (this.y < 42) {
             this.y = 42
-
         }
         if (this.y > window.innerHeight - this.height) {
             this.y = window.innerHeight - this.height
-
         }
     }
     scorePoints() {
         this.score = this.score + 10
-
         this.scoreElm.innerHTML = "score: " + this.score
         if (this.score === 100) {
             window.location.href = './victory.html';
