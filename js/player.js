@@ -97,16 +97,10 @@ class Player {
         this.moveAngle = this.arrow.left ? 1 : this.arrow.right ? -1 : 0;
         const angle = (this.moveAngle * Math.PI) / 180;
         this.angle += angle;
-
-
         this.x += (this.speed) * Math.sin(this.angle);
         this.y -= (this.speed) * Math.cos(this.angle);
         this.rotation = -Math.round(this.angle * 180 / Math.PI)
-        // this.domElement.style.transform = "rotate(" + angle + "deg)";
         this.domElement.style.transform = "rotate(" + this.rotation + "deg)";
-
-        // console.log(this.rotation)
-        // console.log("x: " + this.x + " y: " + this.y)
     }
 
     move() {
