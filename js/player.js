@@ -137,7 +137,7 @@ class Player {
         this.handleRotation();
         this.domElement.style.left = this.x + "px";
         this.domElement.style.bottom = this.y + "px";
-        const collidedObs = obstacles.filter(obstacle => detectCollision(this, obstacle))
+        const collidedObs = buildings.filter(obstacle => detectCollision(this, obstacle))
         if (!this.hasCollided) {
             this.speedLimit = -13
         }

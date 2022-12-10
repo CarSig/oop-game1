@@ -1,5 +1,5 @@
 const isGameOver = () => {
-    const buildingsAlive = obstacles.filter(building => building.health > 0)
+    const buildingsAlive = buildings.filter(building => building.health > 0)
     const playerHealth = player.health
     if (buildingsAlive.length === 0) {
         window.location.href = './game-over.html';
@@ -111,7 +111,7 @@ class UFO extends Item {
                 player.takeDamage()
             }
             //handle building collision
-            obstacles.forEach((obstacleInstance) => {
+            buildings.forEach((obstacleInstance) => {
                 if (detectCollision(this, obstacleInstance)) {
                     this.destroyAndCreateDummy()
                     obstacleInstance.takeDamage()
