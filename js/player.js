@@ -54,7 +54,6 @@ class Player {
     }
 
     createBoardDOM() {
-
         const boardElm = document.getElementById("board");
         boardElm.appendChild(this.domElement);
         this.scoreElm = document.createElement('div');
@@ -88,7 +87,6 @@ class Player {
         this.angle += angle;
         this.x += (this.speed) * Math.sin(this.angle);
         this.y -= (this.speed) * Math.cos(this.angle);
-
     }
 
     move() {
@@ -109,9 +107,10 @@ class Player {
         this.cannonRotation = this.arrow.canonLeft ? this.cannonRotation + 4 : this.arrow.canonRight ? this.cannonRotation - 4 : this.cannonRotation
         this.turret.style.transform = "rotate(" + this.cannonRotation + "deg)"
     }
+
     shot() {
         // TODO : fix the angle of the bullet
-        const angle = Math.abs(this.rotation % 360)
+        //const angle = Math.abs(this.rotation % 360)
         const isShooting = this.arrow.spaceBar && this.shootingEnabled
         if (isShooting) {
             const bullet = new Bullet(this.x, this.y, 2, 100, this.cannonRotation, this.angle, this.moveAngle, this.rotation)
@@ -122,6 +121,7 @@ class Player {
             }, 500)
         }
     }
+
     takeDamage() {
         this.health = this.health > 0 ? this.health - 1 : window.location.href = './game-over.html'
         this.img.className = `imgTank hp${this.health}`
@@ -131,6 +131,7 @@ class Player {
         this.x = this.x < 0 ? 0 : this.x > window.innerWidth - 2 * this.height ? window.innerWidth - 2 * this.height : this.x
         this.y = this.y < 42 ? 42 : this.y > window.innerHeight - this.height ? window.innerHeight - this.height : this.y
     }
+
     scorePoints() {
         this.score = this.score + 10
         this.scoreElm.innerHTML = "score: " + this.score
@@ -138,7 +139,6 @@ class Player {
             window.location.href = './victory.html';
         }
     }
-
 }
 
 

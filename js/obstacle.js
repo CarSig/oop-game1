@@ -1,27 +1,3 @@
-const isGameOver = () => {
-    const buildingsAlive = buildings.filter(building => building.health > 0)
-    const playerHealth = player.health
-    if (buildingsAlive.length === 0) {
-        window.location.href = './game-over.html';
-    }
-}
-
-const soundtrack = new Audio("./assets/sounds/soundtrack.ogg")
-soundtrack.play()
-
-
-
-const detectCollision = (actor, target) => {
-    const collision = actor.x < target.x + target.width &&
-        actor.x + actor.width > target.x &&
-        actor.y < target.y + target.height &&
-        actor.height + actor.y > target.y
-
-    isGameOver()
-    return collision
-}
-
-
 class Item {
     constructor(width, height, x, y, type) {
         this.width = width;
@@ -41,8 +17,7 @@ class Item {
         this.domElement.style.height = this.height + "px";
         this.domElement.style.bottom = this.y + "px";
         this.domElement.style.left = this.x + "px";
-        // this.domElement.style.backgroundColor = this.color;
-        this.domElement.className = `${this.type}`;
+
         const boardElm = document.getElementById("board");
         boardElm.appendChild(this.domElement);
     }
@@ -301,7 +276,7 @@ class Bullet {
                     const isCollision = detectCollision(this, UFOinstance)
                     if (isCollision) {
                         player.scorePoints()
-                        // UFOinstance.classList.add = "destroyed"
+
                         UFOinstance.destroyAndCreateDummy("explosion")
                         this.destroy()
 
