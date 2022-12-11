@@ -8,4 +8,4 @@ startBtn.addEventListener('click', function (event) {
 })
 const soundtrack = new Audio("./assets/sounds/soundtrack.ogg")
 soundtrack.play()
-soundtrack.volume = 0.5
+soundtrack.volume = 0.3
