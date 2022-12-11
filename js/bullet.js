@@ -1,5 +1,5 @@
 
-class Bullet extends MovingItem {
+class Rocket extends MovingItem {
 
     constructor(width, height, x, y, type, moveAngle, angle, speed, rotation, cannonRotation, range) {
         super(width, height, x, y, type, moveAngle, angle, speed, rotation)
@@ -12,7 +12,7 @@ class Bullet extends MovingItem {
         this.rotation = rotation
         this.moveAngle = moveAngle;
         this.bothRotations = (this.rotation + this.cannonRotation) % 360
-        this.bulletDirection = (this.bothRotations * Math.PI) / 180;
+        this.rocketDirection = (this.bothRotations * Math.PI) / 180;
         this.domElement = null;
         this.createDomElement();
         this.moveStart();
@@ -23,8 +23,8 @@ class Bullet extends MovingItem {
         buildings.forEach((obstacleInstance) => {
             const isCollision = detectCollision(this, obstacleInstance)
             if (isCollision) {
-                // this.removeBullet(bulletInterval)
-                // clearInterval(bulletInterval)
+                // this.removerocket(rocketInterval)
+                // clearInterval(rocketInterval)
                 this.destroy()
             }
         }
@@ -42,23 +42,23 @@ class Bullet extends MovingItem {
     }
     moveStart() {
         console.log(this)
-        console.log(bulletsArr);
+        console.log(rocketsArr);
         console.log(UFOarr);
         const move = () => {
-            this.x += Math.sin(this.bulletDirection) //* this.speed;
-            this.y += Math.cos(this.bulletDirection) ///* this.speed;
+            this.x += Math.sin(this.rocketDirection) //* this.speed;
+            this.y += Math.cos(this.rocketDirection) ///* this.speed;
             this.domElement.style.left = this.x + "px";
             this.domElement.style.bottom = this.y + "px";
             handleScreenEdge(this)
             setTimeout(() => {
-                clearInterval(bulletInterval)
+                clearInterval(rocketInterval)
                 this.domElement.remove()
-                bulletsArr.splice(bulletsArr.indexOf(this), 1)
+                rocketsArr.splice(rocketsArr.indexOf(this), 1)
 
             }, 3000)
         }
 
-        const bulletInterval = setInterval(() => {
+        const rocketInterval = setInterval(() => {
             move()
             this.checkUFOCollision()
             this.checkBuildingCollision()

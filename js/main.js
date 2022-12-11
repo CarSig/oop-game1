@@ -1,7 +1,7 @@
 const buildings = [new Building(150, 150, 420, 270), new Building(80, 80, 950, 355), new Building(80, 80, 385, 550)]
 const player = new Player();
 const UFOarr = []
-const bulletsArr = [];
+const rocketsArr = [];
 const audioShot = new Audio('./assets/sounds/tank-shot.mp3');
 
 

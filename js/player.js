@@ -98,14 +98,14 @@ class Player extends MovingItem {
     }
 
     shot() {
-        // TODO : fix the angle of the bullet
+        // TODO : fix the angle of the rocket
         //const angle = Math.abs(this.rotation % 360)
 
         const isShooting = this.arrow.spaceBar && this.shootingEnabled
         if (isShooting) {
-            const bullet = new Bullet(4, 4, this.x, this.y, "bullet", this.moveAngle, this.angle, 2, this.rotation, this.cannonRotation)
+            const rocket = new Rocket(4, 4, this.x, this.y, "rocket", this.moveAngle, this.angle, 2, this.rotation, this.cannonRotation)
 
-            bulletsArr.push(bullet)
+            rocketsArr.push(rocket)
             this.shootingEnabled = false
             setTimeout(() => {
                 this.shootingEnabled = true
@@ -116,9 +116,8 @@ class Player extends MovingItem {
     machineGun() {
         const isShooting = this.arrow.machineGun
         if (isShooting) {
-            const bullet = new Bullet(1, 3, this.x, this.y, "bullet", this.moveAngle, this.angle, 2, this.rotation, this.cannonRotation, 10)
-            // second blullet 10 px away from the first one
-            const bullet2 = new Bullet(1, 3, this.x, this.y, "bullet", this.moveAngle, this.angle, 2, this.rotation, this.cannonRotation, 20)
+            const rocket = new Rocket(1, 3, this.x, this.y, "rocket", this.moveAngle, this.angle, 2, this.rotation, this.cannonRotation, 10)
+
         }
     }
 

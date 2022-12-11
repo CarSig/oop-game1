@@ -79,7 +79,7 @@ img {
   /* transform-origin: 50% 1270%; */
 }
 
-.bullet {
+.rocket {
   position: absolute;
   background-color: rgb(255, 255, 255);
   width: 5px;

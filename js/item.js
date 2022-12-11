@@ -32,7 +32,7 @@ class MovingItem extends Item {
         this.rotation = rotation
     }
     destroy() {
-        const removeLocation = this instanceof Bullet ? -100 : this instanceof UFO ? -200 : -300
+        const removeLocation = this instanceof Rocket ? -100 : this instanceof UFO ? -200 : -300
 
         this.domElement.classList.add("destroyed")
         this.domElement.remove();
